@@ -1,7 +1,8 @@
 export const MOCK_DATA = {
   user: {
     id: 0,
-    username: "Anthony",
+    name: "Anthony",
+    username: "@ant3071",
     bio: "GOAT",
     avatar: "/assets/profileimage/",
     followers: 100,
@@ -662,12 +663,10 @@ export const MOCK_DATA = {
   ],
 };
 
-
-
 export function fetchData() {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve(MOCK_DATA);
-    }, 2000); 
+    }, 2000);
   });
 }

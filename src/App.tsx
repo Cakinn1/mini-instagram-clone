@@ -1,26 +1,36 @@
-import { useEffect, useState } from "react"
-import { fetchData } from "./data/data"
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
-import Landing from "./components/Landing"
+import { useEffect, useState } from "react";
+import { fetchData } from "./data/data";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Feed from "./components/Feed";
+import { MainProps } from "./data/typings";
+import NavBar from "./components/NavBar";
 
 export default function App() {
-const [a, sa] = useState([])
+  const [mainData, setMainData] = useState<MainProps>({
+    results: null,
+    user: null,
+  });
 
   useEffect(() => {
-
-    async function t () {
-      const data = await fetchData()
-      console.log(data.results)
-      sa(data.results)
+    async function fetchAllData() {
+      try {
+        const data = await fetchData();
+        setMainData(data);
+      } catch (error) {
+        throw error;
+      }
     }
-    t()
-  }, [])
+    fetchAllData();
+  }, []);
 
   return (
-<Router>
-  <Routes>
-    <Route path="/" element={<Landing />}/>
-  </Routes>
-</Router>
-  )
+    <div className="flex gap-x-4 h-[200vh]">
+      <Router>
+        <NavBar mainData={mainData} />
+        <Routes>
+          <Route path="/" element={<Feed />} />
+        </Routes>
+      </Router>
+    </div>
+  );
 }
