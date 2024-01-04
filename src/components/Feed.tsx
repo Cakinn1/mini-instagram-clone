@@ -38,8 +38,8 @@ export default function Feed(props: FeedProps) {
 
   return (
     <>
-      <div className="lg:p-16 space-y-8 overflow-y-scroll py-16  px-4  flex-1 lg:max-w-[700px] w-full text-white flex-col flex 2xl:max-w-[800px]">
-        <h1 className="font-bold text-3xl">Home Feed</h1>
+      <div className="lg:p-16 space-y-8 overflow-y-scroll py-16 2xl:px-0 px-4  flex-1 lg:max-w-[700px] w-full text-white flex-col flex 2xl:max-w-[800px]">
+        <h1 className="font-bold text-3xl px-2">Home Feed</h1>
         <div>
           {isLoading &&
             new Array(10).fill(0).map((_, index) => {
