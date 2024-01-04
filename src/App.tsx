@@ -8,6 +8,8 @@ import TopCreators from "./components/TopCreators";
 import Profile from "./components/Profile";
 import UpdateProfile from "./components/UpdateProfile";
 import Bookmarks from "./components/Bookmarks";
+import People from "./components/People";
+import Explore from "./components/Explore";
 
 export default function App() {
   const [mainData, setMainData] = useState<MainProps>({
@@ -164,6 +166,8 @@ export default function App() {
             path="/profile/:username"
             element={<Profile handleLikes={handleLikes} mainData={mainData} />}
           />
+          <Route path="/explore" element={<Explore mainData={mainData} />} />
+          <Route path="/people" element={<People userData={userData} isLoading={isLoading} mainData={mainData} />} />
           <Route path="/update-profile/:username" element={<UpdateProfile />} />
           <Route path="/saved" element={<Bookmarks bookmark={bookmark} />} />
         </Routes>
