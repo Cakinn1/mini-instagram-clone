@@ -5,9 +5,10 @@ import { NavLinkProps, navLinks } from "../data/constants";
 import { CiLogout } from "react-icons/ci";
 interface NavBarProps {
   mainData: MainProps | null;
+  isLoading: boolean;
 }
 export default function NavBar(props: NavBarProps) {
-  const { mainData } = props;
+  const { mainData, isLoading } = props;
   const [isSelected, setIsSelected] = useState<string>("Home");
 
   function handleSelect(value: string) {
@@ -23,19 +24,33 @@ export default function NavBar(props: NavBarProps) {
       <div className="fixed px-4 space-y-8  max-w-[280px] bg-[#09090A] h-full w-full   flex  flex-col">
         <div className=" w-full ">
           <Link to="/">
-          <img src="/logo.svg" className="my-8" alt="" />
+            <img src="/logo.svg" className="my-8" alt="" />
           </Link>
-          <div className="flex gap-x-3 items-center">
-            <div className="bg-blue-400 text-black uppercase w-12 h-12 rounded-full flex justify-center items-center text-2xl">
-              {mainData?.user?.name.slice(0, 1).toUpperCase()}
+          {isLoading ? (
+            new Array(1).fill(0).map((_, index) => {
+              return (
+                <div key={index} className="flex gap-x-3 items-center">
+                  <div className="bg-gray-300 animate-pulse text-black uppercase w-12 h-12 rounded-full flex justify-center items-center text-2xl"></div>
+                  <div className="space-y-4">
+                    <div className="bg-gray-300 animate-pulse w-14 h-4"></div>
+                    <div className="bg-gray-300 animate-pulse w-28 h-4"></div>
+                  </div>
+                </div>
+              );
+            })
+          ) : (
+            <div className="flex gap-x-3 items-center">
+              <div className="bg-blue-400 text-black uppercase w-12 h-12 rounded-full flex justify-center items-center text-2xl">
+                {mainData?.user?.name.slice(0, 1).toUpperCase()}
+              </div>
+              <div>
+                <h1 className="font-bold">{mainData?.user?.name}</h1>
+                <h2 className="text-[#7878a3] text-sm">
+                  {mainData?.user?.username}
+                </h2>
+              </div>
             </div>
-            <div>
-              <h1 className="font-bold">{mainData?.user?.name}</h1>
-              <h2 className="text-[#7878a3] text-sm">
-                {mainData?.user?.username}
-              </h2>
-            </div>
-          </div>
+          )}
         </div>
         <div className="space-y-6 w-full">
           {navLinks.map((link) => {

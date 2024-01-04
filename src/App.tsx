@@ -14,7 +14,7 @@ export default function App() {
     user: null,
   });
   const [bookmark, setBookmark] = useState<ResultsProps[]>([]);
-  const [isFeedOpen, setIsFeedOpen] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const userData = mainData.results?.map((item) => {
     return item.user;
@@ -23,9 +23,12 @@ export default function App() {
   useEffect(() => {
     async function fetchAllData() {
       try {
+        setIsLoading(true);
         const data = await fetchData();
         setMainData(data);
+        setIsLoading(false);
       } catch (error) {
+        setIsLoading(false);
         throw error;
       }
     }
@@ -104,20 +107,30 @@ export default function App() {
         };
       });
     }
-    console.log(userData, mainData);
+  }
+
+  function handleLikes(id: number) {
+    if (mainData.results) {
+      const updateLikes = mainData.results?.map((item) => {
+        return item.id === id ? { ...item, likes: item.likes + 1 } : item;
+      });
+
+      setMainData({ ...mainData, results: updateLikes });
+    }
   }
 
   return (
     <div className="flex mx-auto max-w-[1600px] h-[100vh] gap-x-4 ">
       <Router>
-        <NavBar mainData={mainData} />
+        <NavBar isLoading={isLoading} mainData={mainData} />
         <Routes>
           <Route
             path="/"
             element={
               <Feed
-              addFollowers={addFollowers}
-              userData={userData}
+                isLoading={isLoading}
+                addFollowers={addFollowers}
+                userData={userData}
                 bookmark={bookmark}
                 addBookmark={addBookmark}
                 setMainData={setMainData}
@@ -127,7 +140,7 @@ export default function App() {
           />
           <Route
             path="/profile/:username"
-            element={<Profile mainData={mainData} />}
+            element={<Profile handleLikes={handleLikes} mainData={mainData} />}
           />
           <Route path="/update-profile/:username" element={<UpdateProfile />} />
         </Routes>

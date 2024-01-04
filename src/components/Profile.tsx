@@ -7,10 +7,11 @@ import { CiHeart } from "react-icons/ci";
 import Post from "./Post";
 interface ProfileProps {
   mainData: MainProps;
+  handleLikes: (value: number) => void;
 }
 
 export default function Profile(props: ProfileProps) {
-  const { mainData } = props;
+  const { mainData, handleLikes } = props;
   const { username } = useParams();
   const [isSelected, setIsSelected] = useState<string>("Post");
   const [postSelected, setPostSelected] = useState<boolean>(true);
@@ -18,6 +19,8 @@ export default function Profile(props: ProfileProps) {
   const filterData = mainData.results?.filter((item) => {
     return item.user.username === username;
   });
+
+  console.log(filterData);
 
   function handleSelect(value: string) {
     setIsSelected(value);
@@ -104,6 +107,8 @@ export default function Profile(props: ProfileProps) {
               <div className="mt-12">
                 {postSelected && (
                   <Post
+                  handleLikes={handleLikes}
+                  id={item.id}
                     photo={item.photo}
                     likes={item.likes}
                     bookmark={item.bookmarks}
