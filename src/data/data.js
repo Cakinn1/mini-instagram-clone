@@ -20,7 +20,7 @@ export const MOCK_DATA = {
         following: 50,
         location: "Smoothie Bar",
       },
-      photo: "/assets/photos",
+      photo: "/assets/photos/smoothie.jpeg",
       description:
         "Blended a vibrant smoothie packed with antioxidants and flavor. Cheers to good health! #smoothielove",
       likes: 40,

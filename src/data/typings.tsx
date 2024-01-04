@@ -14,6 +14,7 @@ export interface ResultsProps {
   hashtags: string[];
   date: string;
   location: string;
+  user: UserProps
 }
 
 export interface UserProps {
