@@ -28,7 +28,7 @@ export default function Posts(props: PostsProps) {
     isLoading,
   } = props;
 
-  const itemExistsAlready = bookmark.find((item) => {
+  const itemExistsAlready: ResultsProps | undefined = bookmark.find((item: ResultsProps) => {
     return item.id === id;
   });
 
@@ -59,7 +59,7 @@ export default function Posts(props: PostsProps) {
             <div className="space-y-2 text-[14px]">
               <h1 className="mt-2">{description}</h1>
               <div className="flex flex-wrap gap-x-2">
-                {hashtags.map((tag) => {
+                {hashtags.map((tag: string) => {
                   return <h2 className="text-[#7878a3]">{tag}</h2>;
                 })}
               </div>

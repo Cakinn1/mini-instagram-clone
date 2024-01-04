@@ -1,6 +1,6 @@
 import React from "react";
 import { UserProps } from "../data/typings";
-import { useNavigate } from "react-router-dom";
+import { NavigationType, useNavigate } from "react-router-dom";
 
 interface CreatorsProps extends UserProps {
   addFollowers: (value: string) => void;

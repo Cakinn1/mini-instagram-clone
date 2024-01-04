@@ -16,18 +16,18 @@ export default function Profile(props: ProfileProps) {
   const [isSelected, setIsSelected] = useState<string>("Post");
   const [postSelected, setPostSelected] = useState<boolean>(true);
 
-  const filterData = mainData.results?.filter((item) => {
-    return item.user.username === username;
-  });
+  const filterData: ResultsProps[] | undefined = mainData.results?.filter(
+    (item: ResultsProps) => {
+      return item.user.username === username;
+    }
+  );
 
-  console.log(filterData);
 
-  function handleSelect(value: string) {
+  function handleSelect(value: string): void {
     setIsSelected(value);
     if (value === isSelected) {
       setIsSelected("");
     }
-
     if (value === "Post") {
       setPostSelected(!postSelected);
     } else {

@@ -11,7 +11,7 @@ export default function NavBar(props: NavBarProps) {
   const { mainData, isLoading } = props;
   const [isSelected, setIsSelected] = useState<string>("Home");
 
-  function handleSelect(value: string) {
+  function handleSelect(value: string): void {
     if (value === isSelected) {
       setIsSelected("");
     } else {
@@ -53,7 +53,7 @@ export default function NavBar(props: NavBarProps) {
           )}
         </div>
         <div className="space-y-6 w-full">
-          {navLinks.map((link) => {
+          {navLinks.map((link: NavLinkProps) => {
             return (
               <NavList
                 isSelected={isSelected}

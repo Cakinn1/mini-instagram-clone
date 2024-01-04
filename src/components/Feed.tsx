@@ -26,14 +26,14 @@ export default function Feed(props: FeedProps) {
     isLoading,
   } = props;
 
-  function updateLikes(id: number) {
+  function updateLikes(id: number): ResultsProps[] {
     if (mainData.results) {
-      const updateResults = mainData.results.map((item) => {
+      const updateResults: ResultsProps[] = mainData.results.map((item: ResultsProps) => {
         return item.id === id ? { ...item, likes: item.likes + 1 } : item;
       });
-
       setMainData({ ...mainData, results: updateResults });
     }
+    return []
   }
 
   return (
@@ -42,7 +42,7 @@ export default function Feed(props: FeedProps) {
         <h1 className="font-bold text-3xl px-2">Home Feed</h1>
         <div>
           {isLoading &&
-            new Array(10).fill(0).map((_, index) => {
+            new Array(10).fill(0).map((_, index: number) => {
               return (
                 <div
                   key={index}
@@ -95,7 +95,7 @@ export default function Feed(props: FeedProps) {
               );
             })}
 
-          {mainData.results?.map((data) => {
+          {mainData.results?.map((data: ResultsProps) => {
             return (
               <Posts
                 isLoading={isLoading}

@@ -9,13 +9,12 @@ interface TopCreatorsProps {
 }
 export default function TopCreators(props: TopCreatorsProps) {
   const { userData, addFollowers, isLoading } = props;
-  console.log(userData);
   return (
     <div className="text-white xl:flex xl:flex-col p-6 hidden  border max-w-[460px] flex-1 border-[#1F1F22] bg-[#09090A]  overflow-y-auto ">
       <h1 className="font-bold text-3xl py-10 ">Top Creators</h1>
       <div className="flex flex-wrap gap-x-4">
         {isLoading &&
-          new Array(12).fill(0).map((_, index) => {
+          new Array(12).fill(0).map((_, index: number) => {
             return (
               <div
                 key={index}
@@ -30,7 +29,7 @@ export default function TopCreators(props: TopCreatorsProps) {
               </div>
             );
           })}
-        {userData?.slice(0, 12).map((data) => {
+        {userData?.slice(0, 12).map((data: UserProps) => {
           return (
             <Creators
               isLoading={isLoading}

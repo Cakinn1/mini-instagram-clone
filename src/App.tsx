@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { fetchData } from "./data/data";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Feed from "./components/Feed";
-import { MainProps, ResultsProps } from "./data/typings";
+import { MainProps, ResultsProps, UserProps } from "./data/typings";
 import NavBar from "./components/NavBar";
 import TopCreators from "./components/TopCreators";
 import Profile from "./components/Profile";
@@ -17,15 +17,17 @@ export default function App() {
   const [bookmark, setBookmark] = useState<ResultsProps[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const userData = mainData.results?.map((item) => {
-    return item.user;
-  });
+  const userData: UserProps[] | undefined = mainData.results?.map(
+    (item: ResultsProps) => {
+      return item.user;
+    }
+  );
 
   useEffect(() => {
-    async function fetchAllData() {
+    async function fetchAllData(): Promise<void> {
       try {
         setIsLoading(true);
-        const data = await fetchData();
+        const data: MainProps = await fetchData();
         setMainData(data);
         setIsLoading(false);
       } catch (error) {
@@ -36,29 +38,39 @@ export default function App() {
     fetchAllData();
   }, []);
 
-  function addBookmark(id: number) {
-    const findItem = mainData.results?.find((item) => item.id === id);
+  function addBookmark(id: number): void {
+    const findItem: ResultsProps | undefined = mainData.results?.find(
+      (item: ResultsProps) => item.id === id
+    );
 
     if (findItem) {
-      if (bookmark.find((item) => item.id === id)) {
-        setBookmark((prevData) => {
-          const updatedData = prevData.map((item) => {
-            if (item.id === id) {
-              return {
-                ...item,
-                bookmarks: item.bookmarks - 1,
-              };
-            } else {
-              return item;
-            }
-          });
+      const findBookmarkItem: ResultsProps | undefined = bookmark.find(
+        (item: ResultsProps) => item.id === id
+      );
 
-          setMainData((prevData): MainProps => {
-            const updateData = prevData!.results!.map((item) => {
-              return item.id === id
-                ? { ...item, bookmarks: item.bookmarks - 1 }
-                : item;
-            });
+      if (findBookmarkItem) {
+        setBookmark((prevData: ResultsProps[]): ResultsProps[] => {
+          const updatedData: ResultsProps[] = prevData.map(
+            (item: ResultsProps) => {
+              if (item.id === id) {
+                return {
+                  ...item,
+                  bookmarks: item.bookmarks - 1,
+                };
+              } else {
+                return item;
+              }
+            }
+          );
+
+          setMainData((prevData: MainProps): MainProps => {
+            const updateData: ResultsProps[] = (prevData.results || []).map(
+              (item: ResultsProps): ResultsProps => {
+                return item.id === id
+                  ? { ...item, bookmarks: item.bookmarks - 1 }
+                  : item;
+              }
+            );
 
             return {
               ...prevData,
@@ -66,16 +78,18 @@ export default function App() {
             };
           });
 
-          return updatedData.filter((item) => item.id !== id);
+          return updatedData.filter((item: ResultsProps) => item.id !== id);
         });
       } else {
-        setBookmark((prevData) => {
-          setMainData((prevData): MainProps => {
-            const updateMainData = prevData.results!.map((item) => {
-              return item.id === id
-                ? { ...item, bookmarks: item.bookmarks + 1 }
-                : item;
-            });
+        setBookmark((prevData: ResultsProps[]): ResultsProps[] => {
+          setMainData((prevData: MainProps): MainProps => {
+            const updateMainData: ResultsProps[] = (prevData.results || []).map(
+              (item: ResultsProps) => {
+                return item.id === id
+                  ? { ...item, bookmarks: item.bookmarks + 1 }
+                  : item;
+              }
+            );
 
             return {
               ...prevData,
@@ -92,12 +106,12 @@ export default function App() {
     }
   }
 
-  function addFollowers(username: string) {
+  function addFollowers(username: string): MainProps {
     if (userData) {
-      setMainData((prevData) => {
+      setMainData((prevData: MainProps): MainProps => {
         return {
           ...prevData,
-          results: prevData.results!.map((item) => {
+          results: prevData.results!.map((item: ResultsProps) => {
             return item.user.username === username
               ? {
                   ...item,
@@ -108,16 +122,23 @@ export default function App() {
         };
       });
     }
+
+    return { results: null, user: null };
   }
 
-  function handleLikes(id: number) {
+  function handleLikes(id: number): MainProps {
     if (mainData.results) {
-      const updateLikes = mainData.results?.map((item) => {
-        return item.id === id ? { ...item, likes: item.likes + 1 } : item;
-      });
+      const updateLikes: ResultsProps[] = mainData.results?.map(
+        (item: ResultsProps) => {
+          return item.id === id ? { ...item, likes: item.likes + 1 } : item;
+        }
+      );
 
-      setMainData({ ...mainData, results: updateLikes });
+      setMainData((prevData: MainProps) => {
+        return { ...prevData, results: updateLikes };
+      });
     }
+    return { results: null, user: null };
   }
 
   return (

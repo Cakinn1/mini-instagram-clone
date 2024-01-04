@@ -7,7 +7,6 @@ interface BookmarkProps {
 }
 export default function Bookmarks(props: BookmarkProps) {
   const { bookmark } = props;
-  console.log(bookmark);
   return (
     <div className="text-white space-y-12 p-16 w-full">
       <div className="text-3xl flex gap-x-2 items-center  font-bold">
