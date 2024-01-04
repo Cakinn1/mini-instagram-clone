@@ -19,10 +19,12 @@ export default function NavBar(props: NavBarProps) {
   }
 
   return (
-    <div className="w-[280px] flex   text-white  ">
+    <div className="w-[280px] hidden md:flex  text-white  ">
       <div className="fixed px-4 space-y-8  max-w-[280px] bg-[#09090A] h-full w-full   flex  flex-col">
         <div className=" w-full ">
+          <Link to="/">
           <img src="/logo.svg" className="my-8" alt="" />
+          </Link>
           <div className="flex gap-x-3 items-center">
             <div className="bg-blue-400 text-black uppercase w-12 h-12 rounded-full flex justify-center items-center text-2xl">
               {mainData?.user?.name.slice(0, 1).toUpperCase()}

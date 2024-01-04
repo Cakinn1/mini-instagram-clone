@@ -5,6 +5,8 @@ import Feed from "./components/Feed";
 import { MainProps, ResultsProps } from "./data/typings";
 import NavBar from "./components/NavBar";
 import TopCreators from "./components/TopCreators";
+import Profile from "./components/Profile";
+import UpdateProfile from "./components/UpdateProfile";
 
 export default function App() {
   const [mainData, setMainData] = useState<MainProps>({
@@ -12,6 +14,11 @@ export default function App() {
     user: null,
   });
   const [bookmark, setBookmark] = useState<ResultsProps[]>([]);
+  const [isFeedOpen, setIsFeedOpen] = useState<boolean>(false);
+
+  const userData = mainData.results?.map((item) => {
+    return item.user;
+  });
 
   useEffect(() => {
     async function fetchAllData() {
@@ -81,8 +88,27 @@ export default function App() {
     }
   }
 
+  function addFollowers(username: string) {
+    if (userData) {
+      setMainData((prevData) => {
+        return {
+          ...prevData,
+          results: prevData.results!.map((item) => {
+            return item.user.username === username
+              ? {
+                  ...item,
+                  user: { ...item.user, followers: item.user.followers + 1 },
+                }
+              : item;
+          }),
+        };
+      });
+    }
+    console.log(userData, mainData);
+  }
+
   return (
-    <div className="flex h-[100vh] gap-x-4 ">
+    <div className="flex mx-auto max-w-[1600px] h-[100vh] gap-x-4 ">
       <Router>
         <NavBar mainData={mainData} />
         <Routes>
@@ -90,6 +116,8 @@ export default function App() {
             path="/"
             element={
               <Feed
+              addFollowers={addFollowers}
+              userData={userData}
                 bookmark={bookmark}
                 addBookmark={addBookmark}
                 setMainData={setMainData}
@@ -97,8 +125,12 @@ export default function App() {
               />
             }
           />
+          <Route
+            path="/profile/:username"
+            element={<Profile mainData={mainData} />}
+          />
+          <Route path="/update-profile/:username" element={<UpdateProfile />} />
         </Routes>
-        <TopCreators />
       </Router>
     </div>
   );
