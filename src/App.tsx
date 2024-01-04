@@ -144,7 +144,7 @@ export default function App() {
             element={<Profile handleLikes={handleLikes} mainData={mainData} />}
           />
           <Route path="/update-profile/:username" element={<UpdateProfile />} />
-          <Route path="/bookmark" element={<Bookmarks />} />
+          <Route path="/saved" element={<Bookmarks bookmark={bookmark} />} />
         </Routes>
       </Router>
     </div>

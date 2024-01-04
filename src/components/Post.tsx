@@ -4,34 +4,42 @@ import { CiBookmark } from "react-icons/ci";
 import { IoIosBookmark } from "react-icons/io";
 interface PostProps {
   photo: string;
-  likes: number;
-  bookmark: number;
-  handleLikes: (value: number) => void;
+  likes?: number;
+  bookmark?: number;
+  handleLikes?: (value: number) => void;
   id: number;
+  savedPost?: boolean;
+  username?: string
 }
 
 export default function Post(props: PostProps) {
-  const { bookmark, likes, photo, handleLikes, id } = props;
+  const { bookmark, likes, photo, handleLikes, id, savedPost, username } = props;
 
   return (
-    <div className="relative rounded-3xl   w-fit">
+    <div className="relative rounded-3xl mb-4  w-full lg:w-[48%] xl:w-[30%] ">
       <img
-        className={`h-[300px] rounded-3xl  w-[350px] object-cover `}
+        className={`h-[300px] rounded-3xl w-full  object-cover `}
         src={photo}
         alt=""
       />
       <div className="absolute w-full h-full top-0 bg-gradient-to-t from-black to-transparent bg-opacity-60  z-50"></div>
       <div className="absolute flex items-center gap-x-4 bottom-10 left-6  text-white z-50">
-        <div
-          onClick={() => handleLikes(id)}
-          className="flex items-center gap-x-2 cursor-pointer group "
-        >
-          <CiHeart className="text-lg group-hover:text-red-500 duration-300" />
-          <h1>{likes}</h1>
-        </div>
-        <div className="flex items-center gap-x-2">
-          <CiBookmark className="text-lg" />
-        </div>
+        {savedPost ? (
+          <div className="w-12 h-12 bg-blue-400 rounded-full flex justify-center items-center">{username?.slice(0, 1).toUpperCase()}</div>
+        ) : (
+          <>
+            <div
+              onClick={() => handleLikes && handleLikes(id)}
+              className="flex items-center gap-x-2 cursor-pointer group "
+            >
+              <CiHeart className="text-lg group-hover:text-red-500 duration-300" />
+              <h1>{likes}</h1>
+            </div>
+            <div className="flex items-center gap-x-2">
+              <CiBookmark className="text-lg" />
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
