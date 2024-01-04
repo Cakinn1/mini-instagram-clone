@@ -107,8 +107,8 @@ export default function Profile(props: ProfileProps) {
               <div className="mt-12">
                 {postSelected && (
                   <Post
-                  handleLikes={handleLikes}
-                  id={item.id}
+                    handleLikes={handleLikes}
+                    id={item.id}
                     photo={item.photo}
                     likes={item.likes}
                     bookmark={item.bookmarks}

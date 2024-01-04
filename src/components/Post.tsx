@@ -12,19 +12,12 @@ interface PostProps {
 
 export default function Post(props: PostProps) {
   const { bookmark, likes, photo, handleLikes, id } = props;
-  const [isLoaded, setIsLoaded] = useState<boolean>(false);
 
-  function handleIsLoaded() {
-    setIsLoaded(true);
-  }
   return (
     <div className="relative rounded-3xl   w-fit">
       <img
-        className={`h-[300px] rounded-3xl  w-[350px] object-cover ${
-          isLoaded ? "bg-gray-300 animate-pulse" : ""
-        }`}
+        className={`h-[300px] rounded-3xl  w-[350px] object-cover `}
         src={photo}
-        onLoad={handleIsLoaded}
         alt=""
       />
       <div className="absolute w-full h-full top-0 bg-gradient-to-t from-black to-transparent bg-opacity-60  z-50"></div>

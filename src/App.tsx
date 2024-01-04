@@ -7,6 +7,7 @@ import NavBar from "./components/NavBar";
 import TopCreators from "./components/TopCreators";
 import Profile from "./components/Profile";
 import UpdateProfile from "./components/UpdateProfile";
+import Bookmarks from "./components/Bookmarks";
 
 export default function App() {
   const [mainData, setMainData] = useState<MainProps>({
@@ -143,6 +144,7 @@ export default function App() {
             element={<Profile handleLikes={handleLikes} mainData={mainData} />}
           />
           <Route path="/update-profile/:username" element={<UpdateProfile />} />
+          <Route path="/bookmark" element={<Bookmarks />} />
         </Routes>
       </Router>
     </div>
