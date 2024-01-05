@@ -67,7 +67,7 @@ export default function NavBar(props: NavBarProps) {
           })}
         </div>
         <div className="flex h-full">
-          <div className="mt-auto p-4 flex w-fit cursor-pointer items-center gap-x-4 mb-10">
+          <div className="mt-auto p-4 flex w-fit cursor-not-allowed items-center gap-x-4 mb-10">
             <CiLogout className="text-[#877eff] text-2xl" />
             <h1>Logout</h1>
           </div>

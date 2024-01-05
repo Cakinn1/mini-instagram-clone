@@ -1,13 +1,13 @@
 import React from "react";
-import { ResultsProps } from "../data/typings";
+import { ResultsProps, SinglePostProps } from "../data/typings";
 import { FaBook, FaRegHeart } from "react-icons/fa";
 import { CiBookmark } from "react-icons/ci";
 import { FaBookmark } from "react-icons/fa6";
 import { Link } from "react-router-dom";
-interface PostsProps extends ResultsProps {
-  updateLikes: (value: number) => void;
+interface PostsProps extends SinglePostProps {
+  handleLikes: (value: number) => void;
   addBookmark: (value: number) => void;
-  bookmark: ResultsProps[];
+  bookmark: PostsProps[];
   isLoading: boolean;
 }
 
@@ -21,16 +21,16 @@ export default function Posts(props: PostsProps) {
     likes,
     location,
     photo,
-    user,
-    updateLikes,
+    // user,
+    handleLikes,
     addBookmark,
     bookmark,
     isLoading,
   } = props;
 
-  const itemExistsAlready: ResultsProps | undefined = bookmark.find((item: ResultsProps) => {
-    return item.id === id;
-  });
+  // const itemExistsAlready: ResultsProps | undefined = bookmark.find((item: ResultsProps) => {
+  //   return item.id === id;
+  // });
 
   return (
     <>
@@ -39,7 +39,7 @@ export default function Posts(props: PostsProps) {
       ) : (
         <div className="border space-y-4 h-[600px] border-[#1F1F22] bg-[#09090A] p-6 mb-8 rounded-3xl">
           <Link
-            to={`/profile/${user.username}`}
+            to={`/profile/${user.username}/`}
             className="flex gap-x-2 items-center"
           >
             {/* <img src="" alt="" /> */}
@@ -82,7 +82,7 @@ export default function Posts(props: PostsProps) {
             className="flex h-14 justify-between items-center"
           >
             <div
-              onClick={() => updateLikes(id)}
+              onClick={() => handleLikes(id)}
               className="flex items-center cursor-pointer w-fit group gap-x-2"
             >
               <FaRegHeart className="text-lg text-[#877eff] duration-300 group-hover:text-red-500" />
@@ -92,7 +92,7 @@ export default function Posts(props: PostsProps) {
               onClick={() => addBookmark(id)}
               className="flex items-center cursor-pointer group duration-300 gap-x-2"
             >
-              {itemExistsAlready ? (
+              {/* {itemExistsAlready ? (
                 <>
                   <FaBookmark className=" text-[#877eff] group-hover:text-" />
                   <h1>{bookmarks}</h1>
@@ -102,7 +102,7 @@ export default function Posts(props: PostsProps) {
                   <CiBookmark className="text-lg  text-[#877eff] group-hover:text-" />
                   <h1>{bookmarks}</h1>
                 </>
-              )}
+              )} */}
             </div>
           </form>
         </div>

@@ -7,14 +7,25 @@ export interface MainProps {
 
 export interface ResultsProps {
   id: number;
-  photo: string;
-  description: string;
-  likes: number;
+  user: UserProps;
+  posts: SinglePostProps[];
+}
+
+export interface PostProps {
+  id: number;
+  user: UserProps;
+  posts: SinglePostProps[];
+}
+
+export interface SinglePostProps {
   bookmarks: number;
-  hashtags: string[];
   date: string;
+  description: string;
+  hashtags: string[];
+  id: number;
+  likes: number;
   location: string;
-  user: UserProps
+  photo: string;
 }
 
 export interface UserProps {

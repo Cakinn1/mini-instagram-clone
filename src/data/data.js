@@ -20,20 +20,25 @@ export const MOCK_DATA = {
         following: 50,
         location: "Smoothie Bar",
       },
-      photo: "/assets/photos/smoothie.jpeg",
-      description:
-        "Blended a vibrant smoothie packed with antioxidants and flavor. Cheers to good health! #smoothielove",
-      likes: 40,
-      bookmarks: 12,
-      hashtags: [
-        "#smoothieaddict",
-        "#healthyliving",
-        "#fruitsmoothie",
-        "#nutriblast",
-        "#wellness",
+      posts: [
+        {
+          id: 1,
+          photo: "/assets/photos/smoothie.jpeg",
+          description:
+            "Blended a vibrant smoothie packed with antioxidants and flavor. Cheers to good health! #smoothielove",
+          likes: 40,
+          bookmarks: 12,
+          hashtags: [
+            "#smoothieaddict",
+            "#healthyliving",
+            "#fruitsmoothie",
+            "#nutriblast",
+            "#wellness",
+          ],
+          date: "2024-02-16",
+          location: "Fruit Fusion Lab",
+        },
       ],
-      date: "2024-02-16",
-      location: "Fruit Fusion Lab",
     },
     {
       id: 2,
@@ -45,20 +50,25 @@ export const MOCK_DATA = {
         following: 80,
         location: "Photography Studio",
       },
-      photo: "/assets/photos",
-      description:
-        "A black and white shot that speaks volumes. Sometimes, silence tells the best tales. #photographyart",
-      likes: 85,
-      bookmarks: 25,
-      hashtags: [
-        "#blackandwhitephotography",
-        "#visualstorytelling",
-        "#momentcaptured",
-        "#artofphotography",
-        "#silentnarrative",
+      posts: [
+        {
+          id: 2,
+          photo: "/assets/photos",
+          description:
+            "A black and white shot that speaks volumes. Sometimes, silence tells the best tales. #photographyart",
+          likes: 85,
+          bookmarks: 25,
+          hashtags: [
+            "#blackandwhitephotography",
+            "#visualstorytelling",
+            "#momentcaptured",
+            "#artofphotography",
+            "#silentnarrative",
+          ],
+          date: "2024-02-17",
+          location: "Monochrome Chronicles",
+        },
       ],
-      date: "2024-02-17",
-      location: "Monochrome Chronicles",
     },
     {
       id: 3,
@@ -70,20 +80,25 @@ export const MOCK_DATA = {
         following: 55,
         location: "Bookstore",
       },
-      photo: "/assets/photos",
-      description:
-        "Diving into a gripping science fiction novel. Warp speed ahead! #scifireads",
-      likes: 48,
-      bookmarks: 15,
-      hashtags: [
-        "#sciencefiction",
-        "#bookworm",
-        "#readingadventures",
-        "#imagineworlds",
-        "#bookish",
+      posts: [
+        {
+          id: 3,
+          photo: "/assets/photos",
+          description:
+            "Diving into a gripping science fiction novel. Warp speed ahead! #scifireads",
+          likes: 48,
+          bookmarks: 15,
+          hashtags: [
+            "#sciencefiction",
+            "#bookworm",
+            "#readingadventures",
+            "#imagineworlds",
+            "#bookish",
+          ],
+          date: "2024-02-18",
+          location: "Parallel Realms",
+        },
       ],
-      date: "2024-02-18",
-      location: "Parallel Realms",
     },
     {
       id: 4,
@@ -95,20 +110,25 @@ export const MOCK_DATA = {
         following: 70,
         location: "Mountain Trails",
       },
-      photo: "/assets/photos",
-      description:
-        "Reached the summit after a challenging hike. The view was worth every step. #mountainmagic",
-      likes: 65,
-      bookmarks: 22,
-      hashtags: [
-        "#hikinglife",
-        "#summitviews",
-        "#trailblazer",
-        "#outdoortherapy",
-        "#mountaineer",
+      posts: [
+        {
+          id: 4,
+          photo: "/assets/photos",
+          description:
+            "Reached the summit after a challenging hike. The view was worth every step. #mountainmagic",
+          likes: 65,
+          bookmarks: 22,
+          hashtags: [
+            "#hikinglife",
+            "#summitviews",
+            "#trailblazer",
+            "#outdoortherapy",
+            "#mountaineer",
+          ],
+          date: "2024-02-19",
+          location: "Peak Triumph",
+        },
       ],
-      date: "2024-02-19",
-      location: "Peak Triumph",
     },
     {
       id: 5,
@@ -120,45 +140,63 @@ export const MOCK_DATA = {
         following: 40,
         location: "Home Office",
       },
-      photo: "/assets/photos",
-      description:
-        "Implemented a groundbreaking feature in my latest project. The joy of coding! #codersjoy",
-      likes: 75,
-      bookmarks: 20,
-      hashtags: [
-        "#codingjoy",
-        "#programminglife",
-        "#techdeveloper",
-        "#innovatewithcode",
-        "#codersgig",
+      posts: [
+        {
+          id: 5,
+          photo: "/assets/photos",
+          description:
+            "Implemented a groundbreaking feature in my latest project. The joy of coding! #codersjoy",
+          likes: 75,
+          bookmarks: 20,
+          hashtags: [
+            "#codingjoy",
+            "#programminglife",
+            "#techdeveloper",
+            "#innovatewithcode",
+            "#codersgig",
+          ],
+          date: "2024-02-20",
+          location: "Digital Realm",
+        },
       ],
-      date: "2024-02-20",
-      location: "Digital Realm",
     },
     {
-      id: 6,
-      user: {
-        username: "fashion_icon_789",
-        bio: "Redefining style with every outfit. 👗🕶️",
-        avatar: "/assets/profileimage",
-        followers: 120,
-        following: 60,
-        location: "Fashion Runway",
-      },
-      photo: "/assets/photos",
-      description:
-        "Stepping into the spotlight with a bold and chic ensemble. Fashion is self-expression. #styleicon",
-      likes: 90,
-      bookmarks: 30,
-      hashtags: [
-        "#fashionforward",
-        "#runwaystyle",
-        "#trendsetter",
-        "#fashionista",
-        "#couture",
-      ],
-      date: "2024-02-21",
-      location: "Couture Carnival",
+      // id: 6,
+      // user: {
+      //   username: "fashion_icon_789",
+      //   bio: "Redefining style with every outfit. 👗🕶️",
+      //   avatar: "/assets/profileimage",
+      //   followers: 120,
+      //   following: 60,
+      //   location: "Fashion Runway",
+      // },
+      // posts: [
+      //   {
+      //     id: 6,
+      //     user: {
+      //       username: "fashion_icon_789",
+      //       bio: "Redefining style with every outfit. 👗🕶️",
+      //       avatar: "/assets/profileimage",
+      //       followers: 120,
+      //       following: 60,
+      //       location: "Fashion Runway",
+      //     },
+      //     photo: "/assets/photos",
+      //     description:
+      //       "Stepping into the spotlight with a bold and chic ensemble. Fashion is self-expression. #styleicon",
+      //     likes: 90,
+      //     bookmarks: 30,
+      //     hashtags: [
+      //       "#fashionforward",
+      //       "#runwaystyle",
+      //       "#trendsetter",
+      //       "#fashionista",
+      //       "#couture",
+      //     ],
+      //     date: "2024-02-21",
+      //     location: "Couture Carnival",
+      //   },
+      // ],
     },
     {
       id: 7,
@@ -170,20 +208,25 @@ export const MOCK_DATA = {
         following: 50,
         location: "Observatory Deck",
       },
-      photo: "/assets/photos",
-      description:
-        "Counting stars and identifying constellations. Each twinkling light has a story to tell. #stargazer",
-      likes: 55,
-      bookmarks: 18,
-      hashtags: [
-        "#starrynight",
-        "#constellationmagic",
-        "#nightobsession",
-        "#astronomylover",
-        "#cosmicwonders",
+      posts: [
+        {
+          id: 7,
+          photo: "/assets/photos",
+          description:
+            "Counting stars and identifying constellations. Each twinkling light has a story to tell. #stargazer",
+          likes: 55,
+          bookmarks: 18,
+          hashtags: [
+            "#starrynight",
+            "#constellationmagic",
+            "#nightobsession",
+            "#astronomylover",
+            "#cosmicwonders",
+          ],
+          date: "2024-02-22",
+          location: "Stellar Nightwatch",
+        },
       ],
-      date: "2024-02-22",
-      location: "Stellar Nightwatch",
     },
     {
       id: 8,
@@ -195,20 +238,25 @@ export const MOCK_DATA = {
         following: 55,
         location: "Home Garden",
       },
-      photo: "/assets/photos",
-      description:
-        "Admiring the blooms in my garden. Nature's beauty in every petal. #greenthumb",
-      likes: 42,
-      bookmarks: 12,
-      hashtags: [
-        "#gardenlove",
-        "#plantlife",
-        "#bloomingbeauty",
-        "#gardener",
-        "#botanicalbliss",
+      posts: [
+        {
+          id: 8,
+          photo: "/assets/photos",
+          description:
+            "Admiring the blooms in my garden. Nature's beauty in every petal. #greenthumb",
+          likes: 42,
+          bookmarks: 12,
+          hashtags: [
+            "#gardenlove",
+            "#plantlife",
+            "#bloomingbeauty",
+            "#gardener",
+            "#botanicalbliss",
+          ],
+          date: "2024-02-23",
+          location: "Floral Haven",
+        },
       ],
-      date: "2024-02-23",
-      location: "Floral Haven",
     },
     {
       id: 9,
@@ -220,20 +268,25 @@ export const MOCK_DATA = {
         following: 80,
         location: "Race Circuit",
       },
-      photo: "/assets/photos",
-      description:
-        "Accelerated through the turns, embracing the speed and intensity of the race. #speeddemon",
-      likes: 75,
-      bookmarks: 25,
-      hashtags: [
-        "#racinglife",
-        "#speedfreak",
-        "#adrenalinejunkie",
-        "#motorsportmania",
-        "#racetrackthrills",
+      posts: [
+        {
+          id: 9,
+          photo: "/assets/photos",
+          description:
+            "Accelerated through the turns, embracing the speed and intensity of the race. #speeddemon",
+          likes: 75,
+          bookmarks: 25,
+          hashtags: [
+            "#racinglife",
+            "#speedfreak",
+            "#adrenalinejunkie",
+            "#motorsportmania",
+            "#racetrackthrills",
+          ],
+          date: "2024-02-24",
+          location: "Fast Lane Adventure",
+        },
       ],
-      date: "2024-02-24",
-      location: "Fast Lane Adventure",
     },
     {
       id: 10,
@@ -245,20 +298,25 @@ export const MOCK_DATA = {
         following: 60,
         location: "Thoughtful Retreat",
       },
-      photo: "/assets/photos",
-      description:
-        "Engaged in deep philosophical musings. The quest for understanding continues. #philosophy",
-      likes: 55,
-      bookmarks: 18,
-      hashtags: [
-        "#philosophicalmind",
-        "#wisdomseeker",
-        "#existentialism",
-        "#deepthoughts",
-        "#mindfulpondering",
+      posts: [
+        {
+          id: 10,
+          photo: "/assets/photos",
+          description:
+            "Engaged in deep philosophical musings. The quest for understanding continues. #philosophy",
+          likes: 55,
+          bookmarks: 18,
+          hashtags: [
+            "#philosophicalmind",
+            "#wisdomseeker",
+            "#existentialism",
+            "#deepthoughts",
+            "#mindfulpondering",
+          ],
+          date: "2024-02-25",
+          location: "Contemplation Corner",
+        },
       ],
-      date: "2024-02-25",
-      location: "Contemplation Corner",
     },
     {
       id: 11,
@@ -270,20 +328,25 @@ export const MOCK_DATA = {
         following: 70,
         location: "Fitness Haven",
       },
-      photo: "/assets/photos",
-      description:
-        "Completed an intense workout, feeling the rush of endorphins. Fitness is my therapy. #fitlife",
-      likes: 65,
-      bookmarks: 22,
-      hashtags: [
-        "#fitnessjourney",
-        "#workoutmotivation",
-        "#healthyliving",
-        "#fitnessaddict",
-        "#sweatitout",
+      posts: [
+        {
+          id: 11,
+          photo: "/assets/photos",
+          description:
+            "Completed an intense workout, feeling the rush of endorphins. Fitness is my therapy. #fitlife",
+          likes: 65,
+          bookmarks: 22,
+          hashtags: [
+            "#fitnessjourney",
+            "#workoutmotivation",
+            "#healthyliving",
+            "#fitnessaddict",
+            "#sweatitout",
+          ],
+          date: "2024-02-26",
+          location: "Sweat and Shine Studio",
+        },
       ],
-      date: "2024-02-26",
-      location: "Sweat and Shine Studio",
     },
     {
       id: 12,
@@ -295,21 +358,27 @@ export const MOCK_DATA = {
         following: 50,
         location: "Café Culture",
       },
-      photo: "/assets/photos",
-      description:
-        "Indulged in the rich aroma of freshly brewed coffee. Each sip tells a story of comfort. #coffeelove",
-      likes: 50,
-      bookmarks: 18,
-      hashtags: [
-        "#coffeeholic",
-        "#coffeeculture",
-        "#baristalife",
-        "#cozycafes",
-        "#muglife",
+      posts: [
+        {
+          id: 12,
+          photo: "/assets/photos",
+          description:
+            "Indulged in the rich aroma of freshly brewed coffee. Each sip tells a story of comfort. #coffeelove",
+          likes: 50,
+          bookmarks: 18,
+          hashtags: [
+            "#coffeeholic",
+            "#coffeeculture",
+            "#baristalife",
+            "#cozycafes",
+            "#muglife",
+          ],
+          date: "2024-02-27",
+          location: "Coffee Bliss Spot",
+        },
       ],
-      date: "2024-02-27",
-      location: "Coffee Bliss Spot",
     },
+
     {
       id: 13,
       user: {
@@ -320,20 +389,25 @@ export const MOCK_DATA = {
         following: 90,
         location: "Nature Trails",
       },
-      photo: "/assets/photos",
-      description:
-        "Captured the beauty of a secluded waterfall during my latest hike. Nature's marvels never cease to amaze. 🏞️ #naturephotography",
-      likes: 65,
-      bookmarks: 22,
-      hashtags: [
-        "#naturelover",
-        "#hikingadventures",
-        "#exploreoutdoors",
-        "#waterfall",
-        "#serenity",
+      posts: [
+        {
+          id: 13,
+          photo: "/assets/photos",
+          description:
+            "Captured the beauty of a secluded waterfall during my latest hike. Nature's marvels never cease to amaze. 🏞️ #naturephotography",
+          likes: 65,
+          bookmarks: 22,
+          hashtags: [
+            "#naturelover",
+            "#hikingadventures",
+            "#exploreoutdoors",
+            "#waterfall",
+            "#serenity",
+          ],
+          date: "2024-02-01",
+          location: "Hidden Waterfall",
+        },
       ],
-      date: "2024-02-01",
-      location: "Hidden Waterfall",
     },
     {
       id: 14,
@@ -345,20 +419,25 @@ export const MOCK_DATA = {
         following: 70,
         location: "Gourmet Kitchen",
       },
-      photo: "/assets/photos",
-      description:
-        "Crafted a delectable three-course meal that tantalizes the taste buds. Culinary art at its finest! #foodieheaven",
-      likes: 55,
-      bookmarks: 18,
-      hashtags: [
-        "#culinarymasterpiece",
-        "#gourmet",
-        "#foodporn",
-        "#cheflife",
-        "#foodgasm",
+      posts: [
+        {
+          id: 14,
+          photo: "/assets/photos",
+          description:
+            "Crafted a delectable three-course meal that tantalizes the taste buds. Culinary art at its finest! #foodieheaven",
+          likes: 55,
+          bookmarks: 18,
+          hashtags: [
+            "#culinarymasterpiece",
+            "#gourmet",
+            "#foodporn",
+            "#cheflife",
+            "#foodgasm",
+          ],
+          date: "2024-02-03",
+          location: "Home Kitchen",
+        },
       ],
-      date: "2024-02-03",
-      location: "Home Kitchen",
     },
     {
       id: 15,
@@ -370,20 +449,25 @@ export const MOCK_DATA = {
         following: 40,
         location: "Tech Lab",
       },
-      photo: "/assets/photos",
-      description:
-        "Cracked a complex coding challenge today! Celebrating small victories in the world of programming. #coderslife",
-      likes: 90,
-      bookmarks: 30,
-      hashtags: [
-        "#programming",
-        "#codinglife",
-        "#innovation",
-        "#techgeek",
-        "#developer",
+      posts: [
+        {
+          id: 15,
+          photo: "/assets/photos",
+          description:
+            "Cracked a complex coding challenge today! Celebrating small victories in the world of programming. #coderslife",
+          likes: 90,
+          bookmarks: 30,
+          hashtags: [
+            "#programming",
+            "#codinglife",
+            "#innovation",
+            "#techgeek",
+            "#developer",
+          ],
+          date: "2024-02-05",
+          location: "Coding Milestone",
+        },
       ],
-      date: "2024-02-05",
-      location: "Coding Milestone",
     },
     {
       id: 16,
@@ -395,20 +479,25 @@ export const MOCK_DATA = {
         following: 55,
         location: "Yoga Studio",
       },
-      photo: "/assets/photos",
-      description:
-        "Found tranquility in a serene yoga session. Embracing the journey of self-discovery. #yogalife",
-      likes: 42,
-      bookmarks: 12,
-      hashtags: [
-        "#yogajourney",
-        "#mindfulness",
-        "#yogainspiration",
-        "#selfcare",
-        "#serenity",
+      posts: [
+        {
+          id: 16,
+          photo: "/assets/photos",
+          description:
+            "Found tranquility in a serene yoga session. Embracing the journey of self-discovery. #yogalife",
+          likes: 42,
+          bookmarks: 12,
+          hashtags: [
+            "#yogajourney",
+            "#mindfulness",
+            "#yogainspiration",
+            "#selfcare",
+            "#serenity",
+          ],
+          date: "2024-02-02",
+          location: "Inner Peace Sanctuary",
+        },
       ],
-      date: "2024-02-02",
-      location: "Inner Peace Sanctuary",
     },
     {
       id: 17,
@@ -420,20 +509,25 @@ export const MOCK_DATA = {
         following: 65,
         location: "Pet Clinic",
       },
-      photo: "/assets/photos",
-      description:
-        "Provided care and love to adorable pets at the clinic today. Every pawprint counts! #animalcare",
-      likes: 75,
-      bookmarks: 20,
-      hashtags: [
-        "#petcare",
-        "#animallove",
-        "#veterinary",
-        "#pawprints",
-        "#furryfriends",
+      posts: [
+        {
+          id: 17,
+          photo: "/assets/photos",
+          description:
+            "Provided care and love to adorable pets at the clinic today. Every pawprint counts! #animalcare",
+          likes: 75,
+          bookmarks: 20,
+          hashtags: [
+            "#petcare",
+            "#animallove",
+            "#veterinary",
+            "#pawprints",
+            "#furryfriends",
+          ],
+          date: "2024-02-04",
+          location: "Veterinary Clinic",
+        },
       ],
-      date: "2024-02-04",
-      location: "Veterinary Clinic",
     },
     {
       id: 18,
@@ -445,20 +539,25 @@ export const MOCK_DATA = {
         following: 50,
         location: "Skydiving Drop Zone",
       },
-      photo: "/assets/photos",
-      description:
-        "Freefalling from the sky was an exhilarating experience! Adrenaline rush like no other. #skydivingadventures",
-      likes: 60,
-      bookmarks: 15,
-      hashtags: [
-        "#skydiving",
-        "#adrenalinerush",
-        "#extremesports",
-        "#skyhigh",
-        "#thrillseeker",
+      posts: [
+        {
+          id: 18,
+          photo: "/assets/photos",
+          description:
+            "Freefalling from the sky was an exhilarating experience! Adrenaline rush like no other. #skydivingadventures",
+          likes: 60,
+          bookmarks: 15,
+          hashtags: [
+            "#skydiving",
+            "#adrenalinerush",
+            "#extremesports",
+            "#skyhigh",
+            "#thrillseeker",
+          ],
+          date: "2024-02-06",
+          location: "Jumping Into the Blue",
+        },
       ],
-      date: "2024-02-06",
-      location: "Jumping Into the Blue",
     },
     {
       id: 19,
@@ -470,20 +569,25 @@ export const MOCK_DATA = {
         following: 30,
         location: "Inspiration Stage",
       },
-      photo: "/assets/photos",
-      description:
-        "Spoke at an event today, inspiring others to believe in their capabilities. Your journey matters! #motivationalspeaker",
-      likes: 120,
-      bookmarks: 35,
-      hashtags: [
-        "#motivation",
-        "#inspiration",
-        "#empowerment",
-        "#successmindset",
-        "#speaker",
+      posts: [
+        {
+          id: 19,
+          photo: "/assets/photos",
+          description:
+            "Spoke at an event today, inspiring others to believe in their capabilities. Your journey matters! #motivationalspeaker",
+          likes: 120,
+          bookmarks: 35,
+          hashtags: [
+            "#motivation",
+            "#inspiration",
+            "#empowerment",
+            "#successmindset",
+            "#speaker",
+          ],
+          date: "2024-02-07",
+          location: "Empowerment Talk",
+        },
       ],
-      date: "2024-02-07",
-      location: "Empowerment Talk",
     },
     {
       id: 20,
@@ -495,20 +599,25 @@ export const MOCK_DATA = {
         following: 60,
         location: "Observatory",
       },
-      photo: "/assets/photos",
-      description:
-        "Gazing at the stars and pondering the vastness of the universe. Infinite beauty above us. #stargazing",
-      likes: 50,
-      bookmarks: 18,
-      hashtags: [
-        "#cosmos",
-        "#astronomy",
-        "#starrynight",
-        "#celestialbeauty",
-        "#spaceexploration",
+      posts: [
+        {
+          id: 20,
+          photo: "/assets/photos",
+          description:
+            "Gazing at the stars and pondering the vastness of the universe. Infinite beauty above us. #stargazing",
+          likes: 50,
+          bookmarks: 18,
+          hashtags: [
+            "#cosmos",
+            "#astronomy",
+            "#starrynight",
+            "#celestialbeauty",
+            "#spaceexploration",
+          ],
+          date: "2024-02-08",
+          location: "Starry Night Observation",
+        },
       ],
-      date: "2024-02-08",
-      location: "Starry Night Observation",
     },
     {
       id: 21,
@@ -520,20 +629,25 @@ export const MOCK_DATA = {
         following: 70,
         location: "Coastal Exploration",
       },
-      photo: "/assets/photos",
-      description:
-        "Walking along the shore, feeling the gentle breeze and listening to the ocean's melody. #coastallife",
-      likes: 65,
-      bookmarks: 22,
-      hashtags: [
-        "#oceanvibes",
-        "#coastalwalk",
-        "#beachcombing",
-        "#seaside",
-        "#naturelovers",
+      posts: [
+        {
+          id: 21,
+          photo: "/assets/photos",
+          description:
+            "Walking along the shore, feeling the gentle breeze and listening to the ocean's melody. #coastallife",
+          likes: 65,
+          bookmarks: 22,
+          hashtags: [
+            "#oceanvibes",
+            "#coastalwalk",
+            "#beachcombing",
+            "#seaside",
+            "#naturelovers",
+          ],
+          date: "2024-02-09",
+          location: "Seaside Serenity",
+        },
       ],
-      date: "2024-02-09",
-      location: "Seaside Serenity",
     },
     {
       id: 22,
@@ -545,20 +659,25 @@ export const MOCK_DATA = {
         following: 60,
         location: "Art Studio",
       },
-      photo: "/assets/photos",
-      description:
-        "Finished a new painting today, letting colors tell a story of emotions. #artisticexpression",
-      likes: 55,
-      bookmarks: 18,
-      hashtags: [
-        "#arttherapy",
-        "#creativeexpression",
-        "#painting",
-        "#colorful",
-        "#artlovers",
+      posts: [
+        {
+          id: 22,
+          photo: "/assets/photos",
+          description:
+            "Finished a new painting today, letting colors tell a story of emotions. #artisticexpression",
+          likes: 55,
+          bookmarks: 18,
+          hashtags: [
+            "#arttherapy",
+            "#creativeexpression",
+            "#painting",
+            "#colorful",
+            "#artlovers",
+          ],
+          date: "2024-02-10",
+          location: "Canvas of Emotions",
+        },
       ],
-      date: "2024-02-10",
-      location: "Canvas of Emotions",
     },
     {
       id: 23,
@@ -570,21 +689,27 @@ export const MOCK_DATA = {
         following: 80,
         location: "Scenic Overlook",
       },
-      photo: "/assets/photos",
-      description:
-        "Witnessed a breathtaking sunrise, a reminder of the beauty in new beginnings. #sunrisechasers",
-      likes: 75,
-      bookmarks: 25,
-      hashtags: [
-        "#sunriselovers",
-        "#morningglow",
-        "#newbeginnings",
-        "#natureinspiration",
-        "#skyline",
+      posts: [
+        {
+          id: 23,
+          photo: "/assets/photos",
+          description:
+            "Witnessed a breathtaking sunrise, a reminder of the beauty in new beginnings. #sunrisechasers",
+          likes: 75,
+          bookmarks: 25,
+          hashtags: [
+            "#sunriselovers",
+            "#morningglow",
+            "#newbeginnings",
+            "#natureinspiration",
+            "#skyline",
+          ],
+          date: "2024-02-11",
+          location: "Horizon Awakening",
+        },
       ],
-      date: "2024-02-11",
-      location: "Horizon Awakening",
     },
+
     {
       id: 24,
       user: {
@@ -595,20 +720,25 @@ export const MOCK_DATA = {
         following: 40,
         location: "Science Lab",
       },
-      photo: "/assets/photos",
-      description:
-        "Engaged in fascinating experiments today, unraveling the mysteries of the universe. #sciencelover",
-      likes: 85,
-      bookmarks: 30,
-      hashtags: [
-        "#science",
-        "#experimentation",
-        "#discovery",
-        "#scientificexploration",
-        "#curiosity",
+      posts: [
+        {
+          id: 24,
+          photo: "/assets/photos",
+          description:
+            "Engaged in fascinating experiments today, unraveling the mysteries of the universe. #sciencelover",
+          likes: 85,
+          bookmarks: 30,
+          hashtags: [
+            "#science",
+            "#experimentation",
+            "#discovery",
+            "#scientificexploration",
+            "#curiosity",
+          ],
+          date: "2024-02-12",
+          location: "Laboratory Discoveries",
+        },
       ],
-      date: "2024-02-12",
-      location: "Laboratory Discoveries",
     },
     {
       id: 25,
@@ -620,20 +750,25 @@ export const MOCK_DATA = {
         following: 50,
         location: "Meditation Retreat",
       },
-      photo: "/assets/photos",
-      description:
-        "Led a meditation session today, helping others find tranquility within. #mindfulness",
-      likes: 45,
-      bookmarks: 15,
-      hashtags: [
-        "#meditationjourney",
-        "#mindfulnessteacher",
-        "#innerpeace",
-        "#spiritualgrowth",
-        "#calmness",
+      posts: [
+        {
+          id: 25,
+          photo: "/assets/photos",
+          description:
+            "Led a meditation session today, helping others find tranquility within. #mindfulness",
+          likes: 45,
+          bookmarks: 15,
+          hashtags: [
+            "#meditationjourney",
+            "#mindfulnessteacher",
+            "#innerpeace",
+            "#spiritualgrowth",
+            "#calmness",
+          ],
+          date: "2024-02-13",
+          location: "Silent Retreat",
+        },
       ],
-      date: "2024-02-13",
-      location: "Silent Retreat",
     },
     {
       id: 26,
@@ -645,20 +780,25 @@ export const MOCK_DATA = {
         following: 60,
         location: "Acoustic Sanctuary",
       },
-      photo: "/assets/photos",
-      description:
-        "Strummed the guitar and let the music flow. A melody for the heart and soul. #musicaljourney",
-      likes: 60,
-      bookmarks: 20,
-      hashtags: [
-        "#guitarist",
-        "#acousticmusic",
-        "#soulfulmelodies",
-        "#musicislife",
-        "#harmony",
+      posts: [
+        {
+          id: 26,
+          photo: "/assets/photos",
+          description:
+            "Strummed the guitar and let the music flow. A melody for the heart and soul. #musicaljourney",
+          likes: 60,
+          bookmarks: 20,
+          hashtags: [
+            "#guitarist",
+            "#acousticmusic",
+            "#soulfulmelodies",
+            "#musicislife",
+            "#harmony",
+          ],
+          date: "2024-02-14",
+          location: "Acoustic Harmony",
+        },
       ],
-      date: "2024-02-14",
-      location: "Acoustic Harmony",
     },
   ],
 };

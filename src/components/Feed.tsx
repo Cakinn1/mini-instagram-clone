@@ -1,5 +1,11 @@
 import React from "react";
-import { MainProps, ResultsProps, UserProps } from "../data/typings";
+import {
+  MainProps,
+  PostProps,
+  ResultsProps,
+  SinglePostProps,
+  UserProps,
+} from "../data/typings";
 import Posts from "./Posts";
 import TopCreators from "./TopCreators";
 import { Link } from "react-router-dom";
@@ -10,10 +16,11 @@ interface FeedProps {
   mainData: MainProps;
   setMainData: (value: MainProps) => void;
   addBookmark: (value: number) => void;
-  bookmark: ResultsProps[];
+  bookmark: PostProps[];
   userData: UserProps[] | undefined;
   addFollowers: (value: string) => void;
   isLoading: boolean;
+  handleLikes: (value: number) => void;
 }
 export default function Feed(props: FeedProps) {
   const {
@@ -24,17 +31,18 @@ export default function Feed(props: FeedProps) {
     addFollowers,
     userData,
     isLoading,
+    handleLikes,
   } = props;
 
-  function updateLikes(id: number): ResultsProps[] {
-    if (mainData.results) {
-      const updateResults: ResultsProps[] = mainData.results.map((item: ResultsProps) => {
-        return item.id === id ? { ...item, likes: item.likes + 1 } : item;
-      });
-      setMainData({ ...mainData, results: updateResults });
-    }
-    return []
-  }
+  // function updateLikes(id: number): ResultsProps[] {
+  //   if (mainData.results) {
+  //     const updateResults: ResultsProps[] = mainData.results.map((item: ResultsProps) => {
+  //       return item.id === id ? { ...item, likes: item.likes + 1 } : item;
+  //     });
+  //     setMainData({ ...mainData, results: updateResults });
+  //   }
+  //   return []
+  // }
 
   return (
     <>
@@ -96,20 +104,26 @@ export default function Feed(props: FeedProps) {
             })}
 
           {mainData.results?.map((data: ResultsProps) => {
-            return (
-              <Posts
-                isLoading={isLoading}
-                bookmark={bookmark}
-                addBookmark={addBookmark}
-                updateLikes={updateLikes}
-                {...data}
-                key={data.id}
-              />
-            );
+            return data.posts.map((post) => {
+              return (
+                <Posts
+                  isLoading={isLoading}
+                  bookmark={bookmark}
+                  addBookmark={addBookmark}
+                  handleLikes={handleLikes}
+                  {...post}
+                  key={post.id}
+                />
+              );
+            });
           })}
         </div>
       </div>
-      <TopCreators isLoading={isLoading} addFollowers={addFollowers} userData={userData} />
+      <TopCreators
+        isLoading={isLoading}
+        addFollowers={addFollowers}
+        userData={userData}
+      />
     </>
   );
 }
