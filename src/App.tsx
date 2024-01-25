@@ -77,13 +77,9 @@ export default function App() {
             };
           });
 
-          const deleteItemFromBookmarks = data.filter((item) => {
+          return data.filter((item) => {
             return item.id !== updateBookmark.id;
           });
-
-          return data.filter((item) => {
-            return item.id !== updateBookmark.id
-          })
         } else {
           setMainData((prevData) => {
             const updatedData = (prevData.results ?? []).flatMap((item) => {
@@ -108,8 +104,6 @@ export default function App() {
     }
   }
 
-
-
   function addFollowers(username: string): MainProps {
     if (userData) {
       setMainData((prevData: MainProps): MainProps => {
@@ -131,22 +125,17 @@ export default function App() {
 
   function handleLikes(id: number): MainProps {
     if (mainData.results) {
-      const updateLikes: ResultsProps[] = mainData.results.map(
-        (item: ResultsProps) => {
-          return {
-            ...item,
-            posts: item.posts.map((post: SinglePostProps) => {
-              return post.id === id ? { ...post, likes: post.likes + 1 } : post;
-            }),
-          };
-        }
-      );
-      setMainData((prevData: MainProps) => {
+      const updateLikes = (mainData.results ?? []).map((item) => {
         return {
-          ...prevData,
-          results: updateLikes || null,
+          ...item,
+          posts: item.posts?.map((post) => {
+            return post.id === id ? { ...post, likes: post.likes + 1 } : post;
+          }),
         };
       });
+
+      setMainData({ ...mainData, results: updateLikes });
+
     }
 
     return { results: null, user: null };

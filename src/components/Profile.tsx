@@ -16,16 +16,12 @@ export default function Profile(props: ProfileProps) {
   const [isSelected, setIsSelected] = useState<string>("Post");
   const [postSelected, setPostSelected] = useState<boolean>(true);
 
-  const filterData: ResultsProps[] | undefined = mainData.results?.filter(
+  const filterData: ResultsProps[] | undefined = (mainData.results ?? []).filter(
     (item: ResultsProps) => {
-      return item.user.username === username;
+      return item?.user?.username === username;
     }
   );
 
-  // const filterData: SinglePostProps[] | undefined = mainData.results
-  // ?.filter((item: ResultsProps) => item.user.username === username)
-  // .map((item: ResultsProps) => item.posts)
-  // .flat();
 
   function handleSelect(value: string): void {
     setIsSelected(value);

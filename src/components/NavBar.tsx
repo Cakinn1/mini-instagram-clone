@@ -23,7 +23,12 @@ export default function NavBar(props: NavBarProps) {
     <div className="w-[280px] hidden md:flex  text-white  ">
       <div className="fixed px-4 space-y-8  max-w-[280px] bg-[#09090A] h-full w-full   flex  flex-col">
         <div className=" w-full ">
-          <Link to="/">
+          <Link
+            to="/"
+            onClick={() => {
+              setIsSelected("Home");
+            }}
+          >
             <img src="/logo.svg" className="my-8" alt="" />
           </Link>
           {isLoading ? (

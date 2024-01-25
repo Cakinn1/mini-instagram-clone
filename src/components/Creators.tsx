@@ -23,6 +23,7 @@ export default function Creators(props: CreatorsProps) {
   } = props;
 
   const navigate = useNavigate();
+
   return (
     <>
       {isLoading ? (
