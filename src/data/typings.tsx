@@ -1,4 +1,3 @@
-
 export interface MainProps {
   user: UserProps | null;
   results: ResultsProps[] | null;
@@ -35,4 +34,5 @@ export interface UserProps {
   following: number;
   location: string;
   name: string;
+  id: number;
 }

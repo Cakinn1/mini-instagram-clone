@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { CiHeart } from "react-icons/ci";
 import { CiBookmark } from "react-icons/ci";
 import { IoIosBookmark } from "react-icons/io";
+import { UserProps } from "../data/typings";
 interface PostProps {
   photo: string;
   likes?: number;
@@ -10,11 +11,20 @@ interface PostProps {
   id: number;
   savedPost?: boolean;
   username?: string;
+  userData?: UserProps[] | undefined;
 }
 
 export default function Post(props: PostProps) {
-  const { bookmark, likes, photo, handleLikes, id, savedPost, username } =
-    props;
+  const {
+    bookmark,
+    likes,
+    photo,
+    handleLikes,
+    id,
+    savedPost,
+    username,
+    userData,
+  } = props;
 
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
   function handleLoadIn() {
@@ -22,11 +32,18 @@ export default function Post(props: PostProps) {
   }
 
   useEffect(() => {
-    return () => {
+    if (isLoaded) {
       setIsLoaded(false);
-    };
-  }, []);
+    }
+  }, [isLoaded]);
 
+  const userIdToCurrentId = userData?.map((item) => {
+    if (item.id === id) {
+      return item.username.slice(0, 1).toUpperCase();
+    }
+  });
+
+  console.log(userData);
   return (
     <div className="relative rounded-3xl mb-4  w-full lg:w-[48%] xl:w-[30%] ">
       <img
@@ -42,7 +59,9 @@ export default function Post(props: PostProps) {
       <div className="absolute flex items-center gap-x-4 bottom-10 left-6  text-white z-50">
         {savedPost ? (
           <div className="w-12 h-12 bg-blue-400 rounded-full flex justify-center items-center">
-            {username?.slice(0, 1).toUpperCase()}
+            {userIdToCurrentId
+              ? userIdToCurrentId
+              : username?.slice(0, 1).toUpperCase()}
           </div>
         ) : (
           <>

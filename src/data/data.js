@@ -19,6 +19,7 @@ export const MOCK_DATA = {
         followers: 60,
         following: 50,
         location: "Smoothie Bar",
+        id: 1,
       },
       posts: [
         {
@@ -49,6 +50,7 @@ export const MOCK_DATA = {
         followers: 110,
         following: 80,
         location: "Photography Studio",
+        id: 2,
       },
       posts: [
         {
@@ -79,6 +81,7 @@ export const MOCK_DATA = {
         followers: 75,
         following: 55,
         location: "Bookstore",
+        id: 3,
       },
       posts: [
         {
@@ -109,6 +112,7 @@ export const MOCK_DATA = {
         followers: 90,
         following: 70,
         location: "Mountain Trails",
+        id: 4,
       },
       posts: [
         {
@@ -139,6 +143,7 @@ export const MOCK_DATA = {
         followers: 100,
         following: 40,
         location: "Home Office",
+        id: 5,
       },
       posts: [
         {
@@ -161,44 +166,6 @@ export const MOCK_DATA = {
       ],
     },
     {
-      // id: 6,
-      // user: {
-      //   username: "fashion_icon_789",
-      //   bio: "Redefining style with every outfit. 👗🕶️",
-      //   avatar: "/assets/profileimage",
-      //   followers: 120,
-      //   following: 60,
-      //   location: "Fashion Runway",
-      // },
-      // posts: [
-      //   {
-      //     id: 6,
-      //     user: {
-      //       username: "fashion_icon_789",
-      //       bio: "Redefining style with every outfit. 👗🕶️",
-      //       avatar: "/assets/profileimage",
-      //       followers: 120,
-      //       following: 60,
-      //       location: "Fashion Runway",
-      //     },
-      //     photo: "/assets/photos",
-      //     description:
-      //       "Stepping into the spotlight with a bold and chic ensemble. Fashion is self-expression. #styleicon",
-      //     likes: 90,
-      //     bookmarks: 30,
-      //     hashtags: [
-      //       "#fashionforward",
-      //       "#runwaystyle",
-      //       "#trendsetter",
-      //       "#fashionista",
-      //       "#couture",
-      //     ],
-      //     date: "2024-02-21",
-      //     location: "Couture Carnival",
-      //   },
-      // ],
-    },
-    {
       id: 7,
       user: {
         username: "night_sky_observer",
@@ -207,6 +174,7 @@ export const MOCK_DATA = {
         followers: 80,
         following: 50,
         location: "Observatory Deck",
+        id: 7,
       },
       posts: [
         {
@@ -237,6 +205,7 @@ export const MOCK_DATA = {
         followers: 65,
         following: 55,
         location: "Home Garden",
+        id: 8,
       },
       posts: [
         {
@@ -267,6 +236,7 @@ export const MOCK_DATA = {
         followers: 110,
         following: 80,
         location: "Race Circuit",
+        id: 9,
       },
       posts: [
         {
@@ -297,6 +267,7 @@ export const MOCK_DATA = {
         followers: 85,
         following: 60,
         location: "Thoughtful Retreat",
+        id: 10,
       },
       posts: [
         {
@@ -327,6 +298,7 @@ export const MOCK_DATA = {
         followers: 95,
         following: 70,
         location: "Fitness Haven",
+        id: 11,
       },
       posts: [
         {
@@ -357,6 +329,7 @@ export const MOCK_DATA = {
         followers: 80,
         following: 50,
         location: "Café Culture",
+        id: 12,
       },
       posts: [
         {
@@ -388,6 +361,7 @@ export const MOCK_DATA = {
         followers: 120,
         following: 90,
         location: "Nature Trails",
+        id: 13,
       },
       posts: [
         {
@@ -418,6 +392,7 @@ export const MOCK_DATA = {
         followers: 80,
         following: 70,
         location: "Gourmet Kitchen",
+        id: 14,
       },
       posts: [
         {
@@ -448,6 +423,7 @@ export const MOCK_DATA = {
         followers: 150,
         following: 40,
         location: "Tech Lab",
+        id: 15,
       },
       posts: [
         {
@@ -478,6 +454,7 @@ export const MOCK_DATA = {
         followers: 65,
         following: 55,
         location: "Yoga Studio",
+        id: 16,
       },
       posts: [
         {
@@ -508,6 +485,7 @@ export const MOCK_DATA = {
         followers: 110,
         following: 65,
         location: "Pet Clinic",
+        id: 17,
       },
       posts: [
         {
@@ -538,6 +516,7 @@ export const MOCK_DATA = {
         followers: 95,
         following: 50,
         location: "Skydiving Drop Zone",
+        id: 18,
       },
       posts: [
         {
@@ -568,6 +547,7 @@ export const MOCK_DATA = {
         followers: 200,
         following: 30,
         location: "Inspiration Stage",
+        id: 19,
       },
       posts: [
         {
@@ -598,6 +578,7 @@ export const MOCK_DATA = {
         followers: 75,
         following: 60,
         location: "Observatory",
+        id: 20,
       },
       posts: [
         {
@@ -628,6 +609,7 @@ export const MOCK_DATA = {
         followers: 90,
         following: 70,
         location: "Coastal Exploration",
+        id: 21,
       },
       posts: [
         {
@@ -658,6 +640,7 @@ export const MOCK_DATA = {
         followers: 85,
         following: 60,
         location: "Art Studio",
+        id: 22,
       },
       posts: [
         {
@@ -688,6 +671,7 @@ export const MOCK_DATA = {
         followers: 110,
         following: 80,
         location: "Scenic Overlook",
+        id: 23,
       },
       posts: [
         {
@@ -719,6 +703,7 @@ export const MOCK_DATA = {
         followers: 130,
         following: 40,
         location: "Science Lab",
+        id: 24,
       },
       posts: [
         {
@@ -749,6 +734,7 @@ export const MOCK_DATA = {
         followers: 70,
         following: 50,
         location: "Meditation Retreat",
+        id: 25,
       },
       posts: [
         {
@@ -779,6 +765,7 @@ export const MOCK_DATA = {
         followers: 95,
         following: 60,
         location: "Acoustic Sanctuary",
+        id: 26,
       },
       posts: [
         {

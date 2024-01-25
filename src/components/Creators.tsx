@@ -36,7 +36,7 @@ export default function Creators(props: CreatorsProps) {
           }`}
         >
           <div className="max-w-16 w-full h-full max-h-16 text-2xl text-black rounded-full bg-blue-400 flex justify-center items-center">
-            A
+            {username.slice(0, 1).toUpperCase()}
           </div>
           <div className="space-y-1 text-sm ">
             <h1 className="font-semibold">@{username?.split("_")[0]}</h1>

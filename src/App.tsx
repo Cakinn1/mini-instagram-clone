@@ -143,7 +143,6 @@ export default function App() {
   useEffect(() => {
     function handleSearch() {
       if (mainData.results) {
-        console.log(mainData);
         const updatePost: SinglePostProps[] = mainData.results.flatMap(
           (item: ResultsProps) => {
             return (
@@ -168,6 +167,7 @@ export default function App() {
   //   })
 
   // }
+
 
   return (
     <div className="flex mx-auto max-w-[1600px] h-[100vh] gap-x-4 ">
@@ -219,7 +219,7 @@ export default function App() {
             }
           />
           <Route path="/update-profile/:username" element={<UpdateProfile />} />
-          <Route path="/saved" element={<Bookmarks bookmark={bookmark} />} />
+          <Route path="/saved" element={<Bookmarks userData={userData} bookmark={bookmark} />} />
         </Routes>
       </Router>
     </div>
