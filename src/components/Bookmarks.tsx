@@ -3,7 +3,7 @@ import Post from "./Post";
 import { IoIosBookmark } from "react-icons/io";
 
 interface BookmarkProps {
-  bookmark: ResultsProps[];
+  bookmark: SinglePostProps[];
 }
 export default function Bookmarks(props: BookmarkProps) {
   const { bookmark } = props;
@@ -16,13 +16,11 @@ export default function Bookmarks(props: BookmarkProps) {
       <div className="flex flex-wrap gap-x-6">
         {bookmark.length > 0 ? (
           bookmark.map((item) =>
-            item.posts.map((post) => (
               <Post // username={ite}
-                photo={post.photo}
-                id={post.id}
+                photo={item.photo}
+                id={item.id}
                 savedPost={true}
               />
-            ))
           )
         ) : (
           <div className="flex w-full justify-center items-center">

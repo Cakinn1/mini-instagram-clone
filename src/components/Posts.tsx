@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 interface PostsProps extends SinglePostProps {
   handleLikes: (value: number) => void;
   addBookmark: (value: number) => void;
-  bookmark: ResultsProps[];
+  bookmark: SinglePostProps[];
   isLoading: boolean;
   user: {
     username: string;
@@ -36,9 +36,19 @@ export default function Posts(props: PostsProps) {
     isLoading,
   } = props;
 
-  // const itemExistsAlready: ResultsProps | undefined = bookmark.find((item: ResultsProps) => {
-  //   return item.id === id;
-  // });
+  // const itemExistsAlready: ResultsProps | undefined = bookmark.find(
+  //   (item: ResultsProps) => {
+  //     return item.id === id;
+  //   }
+  // );
+
+  const itemAlreadyInBookmark = bookmark.find((item) => {
+    return item.id === id;
+  });
+  // const itemAlreadyInBookmark = bookmark.find(
+  //   (item) =>
+  //     Array.isArray(item.posts) && item.posts.some((post) => post.id === id)
+  // );
 
   return (
     <>
@@ -100,7 +110,7 @@ export default function Posts(props: PostsProps) {
               onClick={() => addBookmark(id)}
               className="flex items-center cursor-pointer group duration-300 gap-x-2"
             >
-              {/* {itemExistsAlready ? (
+              {itemAlreadyInBookmark ? (
                 <>
                   <FaBookmark className=" text-[#877eff] group-hover:text-" />
                   <h1>{bookmarks}</h1>
@@ -110,7 +120,7 @@ export default function Posts(props: PostsProps) {
                   <CiBookmark className="text-lg  text-[#877eff] group-hover:text-" />
                   <h1>{bookmarks}</h1>
                 </>
-              )} */}
+              )}
             </div>
           </form>
         </div>

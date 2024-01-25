@@ -23,7 +23,7 @@ export default function App() {
     user: null,
   });
 
-  const [bookmark, setBookmark] = useState<ResultsProps[]>([]);
+  const [bookmark, setBookmark] = useState<SinglePostProps[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [searchInput, setSearchInput] = useState<string>("");
   const [filteredPost, setFilteredPost] = useState<
@@ -52,112 +52,70 @@ export default function App() {
   }, []);
 
   function addBookmark(id: number): void {
-    const findItem: SinglePostProps | undefined = mainData.results
-      ?.flatMap((item: ResultsProps) => {
-        return item.posts.find((post: SinglePostProps) => {
-          return post.id === id;
-        });
+    const updateBookmark = mainData.results
+      ?.flatMap((item) => {
+        return item.posts;
       })
-      .find((item) => item !== undefined);
+      .find((post) => post.id === id);
 
-    if (findItem) {
-      const findBookmarkItem: SinglePostProps | undefined = bookmark
-        .flatMap((item: ResultsProps) => {
-          return item.posts.find((post: SinglePostProps) => {
-            return post.id === id;
-          });
-        })
-        .find((item) => item !== undefined);
-
-      if (findBookmarkItem) {
-        setBookmark((prevData: ResultsProps[]): ResultsProps[] => {
-          const updateData: ResultsProps[] = prevData.map(
-            (item: ResultsProps) => {
-              return {
-                ...item,
-                posts: item.posts.map((post: SinglePostProps) => {
-                  return post.id === id
-                    ? { ...post, bookmark: post.bookmarks - 1 }
-                    : post;
-                }),
-              };
-            }
-          );
-
-          setMainData((data: MainProps): MainProps => {
-            const updateData: ResultsProps[] = (data.results || []).map(
-              (item: ResultsProps) => {
-                return {
-                  ...item,
-                  posts: item.posts.map((post: SinglePostProps) => {
-                    return post.id === id
-                      ? { ...post, bookmark: post.bookmarks - 1 }
-                      : post;
-                  }),
-                };
-              }
-            );
-            return {
-              ...data,
-              results: updateData,
-            };
-          });
-
-          const filteredData: ResultsProps[] = updateData.filter(
-            (item: ResultsProps) => {
-              item.posts.find((post: SinglePostProps) => post.id !== id);
-            }
-          );
-          return [...filteredData];
-        });
-      } else {
-        setBookmark((prevData: ResultsProps[]): ResultsProps[] => {
-          const updatedData: ResultsProps[] = prevData.map(
-            (item: ResultsProps) => {
-              return {
-                ...item,
-                posts: item.posts.map((post: SinglePostProps) => {
-                  return post.id === findItem.id
-                    ? { ...post, ...findItem, bookmarks: post.bookmarks + 1 }
-                    : post;
-                }),
-              };
-            }
-          );
-
-          setMainData((prevData: MainProps): MainProps => {
-            const updateMainData: ResultsProps[] = (prevData.results || []).map(
-              (item: ResultsProps) => {
-                return {
-                  ...item,
-                  posts: item.posts.map((post: SinglePostProps) => {
-                    return post.id === id
-                      ? { ...post, bookmark: post.bookmarks + 1 }
-                      : post;
-                  }),
-                };
-              }
-            );
+    if (updateBookmark) {
+      setBookmark((data) => {
+        if (data.find((item) => item.id === updateBookmark.id)) {
+          setMainData((prevData) => {
             return {
               ...prevData,
-              results: updateMainData,
+              results: (prevData.results ?? []).flatMap((item) => {
+                return {
+                  ...item,
+                  posts: item.posts?.map((post) => {
+                    return post.id === updateBookmark.id
+                      ? { ...post, bookmarks: post.bookmarks - 1 }
+                      : post;
+                  }),
+                };
+              }),
             };
           });
 
-          return updatedData;
+          const deleteItemFromBookmarks = data.filter((item) => {
+            return item.id !== updateBookmark.id;
+          });
 
-          // return [...prevData, {upd}];
-        });
-      }
+          return data.filter((item) => {
+            return item.id !== updateBookmark.id
+          })
+        } else {
+          setMainData((prevData) => {
+            const updatedData = (prevData.results ?? []).flatMap((item) => {
+              return {
+                ...item,
+                posts: item.posts?.map((post) => {
+                  return post.id === updateBookmark.id
+                    ? { ...post, bookmarks: post.bookmarks + 1 }
+                    : post;
+                }),
+              };
+            });
+            return {
+              ...prevData,
+              results: updatedData,
+            };
+          });
+
+          return [...bookmark, updateBookmark];
+        }
+      });
     }
   }
+
+
 
   function addFollowers(username: string): MainProps {
     if (userData) {
       setMainData((prevData: MainProps): MainProps => {
         return {
           ...prevData,
-          results: prevData.results!.map((item: ResultsProps) => {
+          results: (prevData.results ?? []).map((item: ResultsProps) => {
             return item.user.username === username
               ? {
                   ...item,
@@ -196,13 +154,14 @@ export default function App() {
   useEffect(() => {
     function handleSearch() {
       if (mainData.results) {
-
-        console.log(mainData)
+        console.log(mainData);
         const updatePost: SinglePostProps[] = mainData.results.flatMap(
           (item: ResultsProps) => {
-            return item?.posts?.filter((post: SinglePostProps) => {
-              return post?.description.includes(searchInput);
-            }) || [];
+            return (
+              item?.posts?.filter((post: SinglePostProps) => {
+                return post?.description.includes(searchInput);
+              }) || []
+            );
           }
         );
         setFilteredPost(updatePost);
@@ -221,7 +180,6 @@ export default function App() {
 
   // }
 
-  console.log(mainData);
   return (
     <div className="flex mx-auto max-w-[1600px] h-[100vh] gap-x-4 ">
       <Router>

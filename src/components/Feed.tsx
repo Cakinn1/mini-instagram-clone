@@ -16,7 +16,7 @@ interface FeedProps {
   mainData: MainProps;
   setMainData: (value: MainProps) => void;
   addBookmark: (value: number) => void;
-  bookmark: ResultsProps[];
+  bookmark: SinglePostProps[];
   userData: UserProps[] | undefined;
   addFollowers: (value: string) => void;
   isLoading: boolean;
