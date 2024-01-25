@@ -1,7 +1,7 @@
 import React, { ReactElement, useState } from "react";
-import { MainProps } from "../data/typings";
+import { MainProps } from "../lib/typings";
 import { Link } from "react-router-dom";
-import { NavLinkProps, navLinks } from "../data/constants";
+import { NavLinkProps, navLinks } from "../lib/constants";
 import { CiLogout } from "react-icons/ci";
 interface NavBarProps {
   mainData: MainProps | null;

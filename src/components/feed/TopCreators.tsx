@@ -1,6 +1,6 @@
 import React from "react";
-import { UserProps } from "../data/typings";
-import Creators from "./Creators";
+import { UserProps } from "../../lib/typings";
+import Creators from "../ui/Creators";
 
 interface TopCreatorsProps {
   userData: UserProps[] | undefined;

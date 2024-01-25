@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { CiHeart } from "react-icons/ci";
 import { CiBookmark } from "react-icons/ci";
 import { IoIosBookmark } from "react-icons/io";
-import { UserProps } from "../data/typings";
+import { UserProps } from "../../lib/typings";
 interface PostProps {
   photo: string;
   likes?: number;
@@ -43,7 +43,6 @@ export default function Post(props: PostProps) {
     }
   });
 
-  console.log(userData);
   return (
     <div className="relative rounded-3xl mb-4  w-full lg:w-[48%] xl:w-[30%] ">
       <img

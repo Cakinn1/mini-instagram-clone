@@ -1,5 +1,5 @@
 import React from "react";
-import { ResultsProps, SinglePostProps } from "../data/typings";
+import { ResultsProps, SinglePostProps } from "../../lib/typings";
 import { FaBook, FaRegHeart } from "react-icons/fa";
 import { CiBookmark } from "react-icons/ci";
 import { FaBookmark } from "react-icons/fa6";

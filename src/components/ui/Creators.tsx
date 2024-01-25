@@ -1,5 +1,5 @@
-import React from "react";
-import { UserProps } from "../data/typings";
+import React, { useState } from "react";
+import { UserProps } from "../../lib/typings";
 import { NavigationType, useNavigate } from "react-router-dom";
 
 interface CreatorsProps extends UserProps {
@@ -22,6 +22,7 @@ export default function Creators(props: CreatorsProps) {
     isPeopleTrue,
   } = props;
 
+  const [followerCounter, setFollowerCounter] = useState<boolean>(false);
   const navigate = useNavigate();
 
   return (
@@ -31,7 +32,7 @@ export default function Creators(props: CreatorsProps) {
       ) : (
         <div
           onClick={() => navigate(`/profile/${username}`)}
-          className={`border-[#1F1F22] cursor-pointer text-center text-white flex items-center flex-col space-y-4 border rounded-3xl p-6 min-h-[240px] mb-10 ${
+          className={`border-[#1F1F22] relative cursor-pointer text-center text-white flex items-center flex-col space-y-4 border rounded-3xl p-6 min-h-[240px] mb-10 ${
             isPeopleTrue ? "w-[47%] xl:w-[30%]" : " w-full  2xl:w-[47%]"
           }`}
         >
@@ -43,11 +44,27 @@ export default function Creators(props: CreatorsProps) {
             <p className="text-[#7878A3]">{location}</p>
           </div>
           <button
-            onClick={(e) => e.stopPropagation()}
-            className="bg-[#877eff] hover:bg-opacity-30 duration-300 cursor-not-allowed px-5 py-2 rounded-lg text-sm"
+            onClick={(e) => {
+              e.stopPropagation();
+              if (addFollowers) addFollowers(username);
+              setFollowerCounter(true);
+              setTimeout(() => {
+                setFollowerCounter(false);
+              }, 1000);
+            }}
+            className="bg-[#877eff] hover:bg-opacity-30 duration-300 cursor-pointer px-5 py-2 rounded-lg text-sm"
           >
             Follow
           </button>
+          {followerCounter && (
+            <div
+              className={`absolute top-0 right-2 rounded-full border  border-[#877eff] ${
+                followers >= 100 ? "px-2" : "px-3"
+              } py-2`}
+            >
+              {followers}
+            </div>
+          )}
         </div>
       )}
     </>

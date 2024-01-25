@@ -1,21 +1,21 @@
 import { useEffect, useState } from "react";
-import { fetchData } from "./data/data";
+import { fetchData } from "./lib/data";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Feed from "./components/Feed";
+import Feed from "./pages/Feed";
 import {
   MainProps,
   ResultsProps,
   SinglePostProps,
   UserProps,
-} from "./data/typings";
-import NavBar from "./components/NavBar";
-import TopCreators from "./components/TopCreators";
-import Profile from "./components/Profile";
-import UpdateProfile from "./components/UpdateProfile";
-import Bookmarks from "./components/Bookmarks";
-import People from "./components/People";
-import Explore from "./components/Explore";
-import CreatePost from "./components/CreatePost";
+} from "./lib/typings";
+import NavBar from "./pages/NavBar";
+import TopCreators from "./components/feed/TopCreators";
+import Profile from "./pages/Profile";
+import UpdateProfile from "./pages/UpdateProfile";
+import Bookmarks from "./pages/Bookmarks";
+import People from "./pages/People";
+import Explore from "./pages/Explore";
+import CreatePost from "./pages/CreatePost";
 
 export default function App() {
   const [mainData, setMainData] = useState<MainProps>({
@@ -104,23 +104,21 @@ export default function App() {
     }
   }
 
-  function addFollowers(username: string): MainProps {
-    if (userData) {
-      setMainData((prevData: MainProps): MainProps => {
-        return {
-          ...prevData,
-          results: (prevData.results ?? []).map((item: ResultsProps) => {
-            return item.user.username === username
-              ? {
-                  ...item,
-                  user: { ...item.user, followers: item.user.followers + 1 },
-                }
-              : item;
-          }),
-        };
-      });
-    }
-    return { results: null, user: null };
+  function addFollowers(username: string) {
+    setMainData((prevData: MainProps): MainProps => {
+      return {
+        ...prevData,
+        results: (prevData.results ?? []).map((result) => {
+          return {
+            ...result,
+            user:
+              result.user.username === username
+                ? { ...result.user, followers: result.user.followers + 1 }
+                : result.user,
+          };
+        }),
+      };
+    });
   }
 
   function handleLikes(id: number): MainProps {
@@ -135,7 +133,6 @@ export default function App() {
       });
 
       setMainData({ ...mainData, results: updateLikes });
-
     }
 
     return { results: null, user: null };
@@ -168,6 +165,9 @@ export default function App() {
 
   // }
 
+  useEffect(() => {
+    console.log(mainData);
+  }, [mainData]);
 
   return (
     <div className="flex mx-auto max-w-[1600px] h-[100vh] gap-x-4 ">
@@ -193,13 +193,12 @@ export default function App() {
             path="/profile/:username"
             element={<Profile handleLikes={handleLikes} mainData={mainData} />}
           />
-
           <Route path="/create-post" element={<CreatePost />} />
-
           <Route
             path="/explore"
             element={
               <Explore
+                isLoading={isLoading}
                 handleLikes={handleLikes}
                 setSearchInput={setSearchInput}
                 searchInput={searchInput}
@@ -219,7 +218,10 @@ export default function App() {
             }
           />
           <Route path="/update-profile/:username" element={<UpdateProfile />} />
-          <Route path="/saved" element={<Bookmarks userData={userData} bookmark={bookmark} />} />
+          <Route
+            path="/saved"
+            element={<Bookmarks userData={userData} bookmark={bookmark} />}
+          />
         </Routes>
       </Router>
     </div>

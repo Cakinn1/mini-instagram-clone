@@ -1,6 +1,6 @@
 import React from "react";
-import { MainProps, UserProps } from "../data/typings";
-import Creators from "./Creators";
+import { MainProps, UserProps } from "../lib/typings";
+import Creators from "../components/ui/Creators";
 
 interface PeopleProps {
   mainData: MainProps;
@@ -30,7 +30,9 @@ export default function People(props: PeopleProps) {
             );
           })}
         {userData?.map((data: UserProps) => {
-          return <Creators isPeopleTrue={true} isLoading={isLoading} {...data} />;
+          return (
+            <Creators isPeopleTrue={true} isLoading={isLoading} {...data} />
+          );
         })}
       </div>
     </div>

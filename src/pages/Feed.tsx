@@ -5,9 +5,9 @@ import {
   ResultsProps,
   SinglePostProps,
   UserProps,
-} from "../data/typings";
-import Posts from "./Posts";
-import TopCreators from "./TopCreators";
+} from "../lib/typings";
+import Posts from "../components/feed/Posts";
+import TopCreators from "../components/feed/TopCreators";
 import { Link } from "react-router-dom";
 import { FaRegHeart } from "react-icons/fa";
 import { CiBookmark } from "react-icons/ci";
@@ -34,16 +34,6 @@ export default function Feed(props: FeedProps) {
     handleLikes,
   } = props;
 
-  // function updateLikes(id: number): ResultsProps[] {
-  //   if (mainData.results) {
-  //     const updateResults: ResultsProps[] = mainData.results.map((item: ResultsProps) => {
-  //       return item.id === id ? { ...item, likes: item.likes + 1 } : item;
-  //     });
-  //     setMainData({ ...mainData, results: updateResults });
-  //   }
-  //   return []
-  // }
-
   return (
     <>
       <div className="lg:p-16 space-y-8 overflow-y-scroll py-16 2xl:px-0 px-4  flex-1 lg:max-w-[700px] w-full text-white flex-col flex 2xl:max-w-[800px]">
@@ -61,13 +51,11 @@ export default function Feed(props: FeedProps) {
                   className="border space-y-4 h-[600px] border-[#1F1F22] bg-[#09090A] p-6 mb-8 rounded-3xl"
                 >
                   <Link to="/" className="flex gap-x-2 items-center">
-                    {/* <img src="" alt="" /> */}
                     <div className="bg-gray-300 animate-pulse text-black text-lg rounded-full h-12 w-12 flex justify-center items-center"></div>
                     <div className="space-y-1">
                       <h1 className="bg-gray-300 animate-pulse h-4 w-[180px]"></h1>
                       <div className="flex items-center gap-x-2 text-[#7878a3] text-sm">
                         <p className="bg-gray-300 animate-pulse h-4 w-24"></p>
-                        {/* <div className="w-1 h-1 bg-[#7878a3] rounded-full"></div> */}
                         <p className="bg-gray-300 animate-pulse h-4 w-full"></p>
                       </div>
                     </div>

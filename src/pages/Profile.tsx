@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { MainProps, ResultsProps } from "../data/typings";
+import { MainProps, ResultsProps } from "../lib/typings";
 import { FaEdit } from "react-icons/fa";
 import { BsPostcard } from "react-icons/bs";
 import { CiHeart } from "react-icons/ci";
-import Post from "./Post";
+import Post from "../components/ui/Post";
 interface ProfileProps {
   mainData: MainProps;
   handleLikes: (value: number) => void;
@@ -16,12 +16,11 @@ export default function Profile(props: ProfileProps) {
   const [isSelected, setIsSelected] = useState<string>("Post");
   const [postSelected, setPostSelected] = useState<boolean>(true);
 
-  const filterData: ResultsProps[] | undefined = (mainData.results ?? []).filter(
-    (item: ResultsProps) => {
-      return item?.user?.username === username;
-    }
-  );
-
+  const filterData: ResultsProps[] | undefined = (
+    mainData.results ?? []
+  ).filter((item: ResultsProps) => {
+    return item?.user?.username === username;
+  });
 
   function handleSelect(value: string): void {
     setIsSelected(value);

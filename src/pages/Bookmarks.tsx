@@ -1,5 +1,5 @@
-import { ResultsProps, SinglePostProps, UserProps } from "../data/typings";
-import Post from "./Post";
+import { ResultsProps, SinglePostProps, UserProps } from "../lib/typings";
+import Post from "../components/ui/Post";
 import { IoIosBookmark } from "react-icons/io";
 
 interface BookmarkProps {
