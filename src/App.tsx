@@ -155,15 +155,31 @@ export default function App() {
     handleSearch();
   }, [searchInput, mainData.results]);
 
-  // function handleUpload (id: number) {
+  const [descriptionInput, setDescriptionInput] = useState<string>("");
+  const [idCounter, setIdCounter] = useState<number>(27);
 
-  //   setMainData((prevData: MainProps): MainProps => {
-  //     return {
-  //       ...prevData
-  //     }
-  //   })
-
-  // }
+  function handleUpload(id: number) {
+    const newPost: SinglePostProps = {
+      id: idCounter,
+      bookmarks: 0,
+      description: descriptionInput,
+      date: "",
+      hashtags: [""],
+      likes: 0,
+      location: "",
+      photo: "",
+    };
+    setIdCounter((prev) => prev + 1)
+    setMainData(
+      (prevData: MainProps): MainProps => ({
+        ...prevData,
+        results: (prevData.results ?? []).map((result) => ({
+          ...result,
+          posts: result.id === id ? [...result.posts, newPost] : result.posts,
+        })),
+      })
+    );
+  }
 
   useEffect(() => {
     console.log(mainData);
@@ -193,7 +209,10 @@ export default function App() {
             path="/profile/:username"
             element={<Profile handleLikes={handleLikes} mainData={mainData} />}
           />
-          <Route path="/create-post" element={<CreatePost />} />
+          <Route
+            path="/create-post"
+            element={<CreatePost handleUpload={handleUpload} />}
+          />
           <Route
             path="/explore"
             element={

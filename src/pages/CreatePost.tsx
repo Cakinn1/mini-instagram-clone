@@ -2,9 +2,14 @@ import React from "react";
 import { MdPostAdd } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 
-export default function CreatePost() {
+interface CreatePostProps {
+  handleUpload: (value: number) => void;
+}
 
-    const navigate = useNavigate()
+export default function CreatePost(props: CreatePostProps) {
+  const { handleUpload } = props;
+
+  const navigate = useNavigate();
   return (
     <div className="text-white space-y-12 p-16 flex flex-1 flex-col">
       <div className="flex text-3xl  font-bold items-center gap-x-2">
@@ -47,12 +52,15 @@ export default function CreatePost() {
 
       <div className="flex gap-x-4 justify-end items-center">
         <div>
-          <button onClick={() => navigate("/")} className="bg-[#1f1f22] px-6 hover:brightness-150 duration-300 py-3 rounded-md">
+          <button
+            onClick={() => navigate("/")}
+            className="bg-[#1f1f22] px-6 hover:brightness-150 duration-300 py-3 rounded-md"
+          >
             Cancel
           </button>
         </div>
         <div>
-          <button className="bg-[#877Eff] px-6 hover:brightness-150 duration-300 py-3 rounded-md">
+          <button onClick={() => handleUpload(1)} className="bg-[#877Eff] px-6 hover:brightness-150 duration-300 py-3 rounded-md">
             Create Post
           </button>
         </div>
