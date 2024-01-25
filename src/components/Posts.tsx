@@ -7,8 +7,16 @@ import { Link } from "react-router-dom";
 interface PostsProps extends SinglePostProps {
   handleLikes: (value: number) => void;
   addBookmark: (value: number) => void;
-  bookmark: PostsProps[];
+  bookmark: ResultsProps[];
   isLoading: boolean;
+  user: {
+    username: string;
+    bio: string;
+    avatar: string;
+    followers: number;
+    following: number;
+    location: string;
+  };
 }
 
 export default function Posts(props: PostsProps) {
@@ -21,7 +29,7 @@ export default function Posts(props: PostsProps) {
     likes,
     location,
     photo,
-    // user,
+    user,
     handleLikes,
     addBookmark,
     bookmark,

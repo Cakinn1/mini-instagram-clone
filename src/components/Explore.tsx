@@ -31,6 +31,7 @@ export default function Explore(props: ExploreProps) {
         <h1 className="text-3xl font-bold">Popular Post Today</h1>
 
         <div className="flex flex-wrap gap-x-4">
+   
           {filteredPost?.map((post) => {
             return (
               <Post

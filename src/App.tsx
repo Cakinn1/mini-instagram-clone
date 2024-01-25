@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Feed from "./components/Feed";
 import {
   MainProps,
-  PostProps,
   ResultsProps,
   SinglePostProps,
   UserProps,
@@ -24,12 +23,12 @@ export default function App() {
     user: null,
   });
 
-  const [bookmark, setBookmark] = useState<PostProps[]>([]);
+  const [bookmark, setBookmark] = useState<ResultsProps[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [searchInput, setSearchInput] = useState<string>("");
   const [filteredPost, setFilteredPost] = useState<
     SinglePostProps[] | undefined
-  >(mainData.results?.flatMap((item) => item.posts));
+  >(mainData.results?.flatMap((item: ResultsProps) => item.posts));
 
   const userData: UserProps[] | undefined = mainData.results?.map(
     (item: ResultsProps) => {
@@ -63,7 +62,7 @@ export default function App() {
 
     if (findItem) {
       const findBookmarkItem: SinglePostProps | undefined = bookmark
-        .flatMap((item: PostProps) => {
+        .flatMap((item: ResultsProps) => {
           return item.posts.find((post: SinglePostProps) => {
             return post.id === id;
           });
@@ -71,17 +70,19 @@ export default function App() {
         .find((item) => item !== undefined);
 
       if (findBookmarkItem) {
-        setBookmark((prevData: PostProps[]): PostProps[] => {
-          const updateData: PostProps[] = prevData.map((item: PostProps) => {
-            return {
-              ...item,
-              posts: item.posts.map((post: SinglePostProps) => {
-                return post.id === id
-                  ? { ...post, bookmark: post.bookmarks - 1 }
-                  : post;
-              }),
-            };
-          });
+        setBookmark((prevData: ResultsProps[]): ResultsProps[] => {
+          const updateData: ResultsProps[] = prevData.map(
+            (item: ResultsProps) => {
+              return {
+                ...item,
+                posts: item.posts.map((post: SinglePostProps) => {
+                  return post.id === id
+                    ? { ...post, bookmark: post.bookmarks - 1 }
+                    : post;
+                }),
+              };
+            }
+          );
 
           setMainData((data: MainProps): MainProps => {
             const updateData: ResultsProps[] = (data.results || []).map(
@@ -102,25 +103,27 @@ export default function App() {
             };
           });
 
-          const filteredData: PostProps[] = updateData.filter(
-            (item: PostProps) => {
+          const filteredData: ResultsProps[] = updateData.filter(
+            (item: ResultsProps) => {
               item.posts.find((post: SinglePostProps) => post.id !== id);
             }
           );
           return [...filteredData];
         });
       } else {
-        setBookmark((prevData: PostProps[]): PostProps[] => {
-          const updatedData: PostProps[] = prevData.map((item: PostProps) => {
-            return {
-              ...item,
-              posts: item.posts.map((post: SinglePostProps) => {
-                return post.id === findItem.id
-                  ? { ...post, ...findItem, bookmarks: post.bookmarks + 1 }
-                  : post;
-              }),
-            };
-          });
+        setBookmark((prevData: ResultsProps[]): ResultsProps[] => {
+          const updatedData: ResultsProps[] = prevData.map(
+            (item: ResultsProps) => {
+              return {
+                ...item,
+                posts: item.posts.map((post: SinglePostProps) => {
+                  return post.id === findItem.id
+                    ? { ...post, ...findItem, bookmarks: post.bookmarks + 1 }
+                    : post;
+                }),
+              };
+            }
+          );
 
           setMainData((prevData: MainProps): MainProps => {
             const updateMainData: ResultsProps[] = (prevData.results || []).map(
@@ -148,7 +151,6 @@ export default function App() {
       }
     }
   }
-  console.log(mainData);
 
   function addFollowers(username: string): MainProps {
     if (userData) {
@@ -194,11 +196,13 @@ export default function App() {
   useEffect(() => {
     function handleSearch() {
       if (mainData.results) {
+
+        console.log(mainData)
         const updatePost: SinglePostProps[] = mainData.results.flatMap(
           (item: ResultsProps) => {
-            return item.posts.filter((post: SinglePostProps) => {
-              return post.description.includes(searchInput);
-            });
+            return item?.posts?.filter((post: SinglePostProps) => {
+              return post?.description.includes(searchInput);
+            }) || [];
           }
         );
         setFilteredPost(updatePost);
@@ -206,8 +210,6 @@ export default function App() {
     }
     handleSearch();
   }, [searchInput, mainData.results]);
-
-  console.log(mainData.results?.map((item) => item));
 
   // function handleUpload (id: number) {
 
@@ -219,17 +221,17 @@ export default function App() {
 
   // }
 
-  console.log(filteredPost)
+  console.log(mainData);
   return (
     <div className="flex mx-auto max-w-[1600px] h-[100vh] gap-x-4 ">
       <Router>
         <NavBar isLoading={isLoading} mainData={mainData} />
         <Routes>
-          {/* <Route
+          <Route
             path="/"
             element={
               <Feed
-              handleLikes={handleLikes}
+                handleLikes={handleLikes}
                 isLoading={isLoading}
                 addFollowers={addFollowers}
                 userData={userData}
@@ -239,9 +241,7 @@ export default function App() {
                 mainData={mainData}
               />
             }
-          /> 
-          */}
-
+          />
           <Route
             path="/profile/:username"
             element={<Profile handleLikes={handleLikes} mainData={mainData} />}
@@ -261,7 +261,6 @@ export default function App() {
               />
             }
           />
-
           <Route
             path="/people"
             element={
@@ -273,7 +272,7 @@ export default function App() {
             }
           />
           <Route path="/update-profile/:username" element={<UpdateProfile />} />
-          {/* <Route path="/saved" element={<Bookmarks bookmark={bookmark} />} /> */}
+          <Route path="/saved" element={<Bookmarks bookmark={bookmark} />} />
         </Routes>
       </Router>
     </div>

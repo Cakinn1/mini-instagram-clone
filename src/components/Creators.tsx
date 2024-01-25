@@ -38,7 +38,7 @@ export default function Creators(props: CreatorsProps) {
             A
           </div>
           <div className="space-y-1 text-sm ">
-            <h1 className="font-semibold">@{username.split("_")[0]}</h1>
+            <h1 className="font-semibold">@{username?.split("_")[0]}</h1>
             <p className="text-[#7878A3]">{location}</p>
           </div>
           <button

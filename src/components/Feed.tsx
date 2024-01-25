@@ -16,7 +16,7 @@ interface FeedProps {
   mainData: MainProps;
   setMainData: (value: MainProps) => void;
   addBookmark: (value: number) => void;
-  bookmark: PostProps[];
+  bookmark: ResultsProps[];
   userData: UserProps[] | undefined;
   addFollowers: (value: string) => void;
   isLoading: boolean;
@@ -103,20 +103,19 @@ export default function Feed(props: FeedProps) {
               );
             })}
 
-          {mainData.results?.map((data: ResultsProps) => {
-            return data.posts.map((post) => {
-              return (
-                <Posts
-                  isLoading={isLoading}
-                  bookmark={bookmark}
-                  addBookmark={addBookmark}
-                  handleLikes={handleLikes}
-                  {...post}
-                  key={post.id}
-                />
-              );
-            });
-          })}
+          {mainData.results?.map((data: ResultsProps) =>
+            data.posts?.map((post) => (
+              <Posts
+                user={data.user}
+                isLoading={isLoading}
+                bookmark={bookmark}
+                addBookmark={addBookmark}
+                handleLikes={handleLikes}
+                {...post}
+                key={post.id}
+              />
+            ))
+          )}
         </div>
       </div>
       <TopCreators

@@ -1,4 +1,3 @@
-export default {};
 
 export interface MainProps {
   user: UserProps | null;

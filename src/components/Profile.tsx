@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { MainProps, ResultsProps, SinglePostProps } from "../data/typings";
+import { MainProps, ResultsProps } from "../data/typings";
 import { FaEdit } from "react-icons/fa";
 import { BsPostcard } from "react-icons/bs";
 import { CiHeart } from "react-icons/ci";
@@ -16,17 +16,23 @@ export default function Profile(props: ProfileProps) {
   const [isSelected, setIsSelected] = useState<string>("Post");
   const [postSelected, setPostSelected] = useState<boolean>(true);
 
-  const filterData: SinglePostProps[] | undefined = mainData.results
-  ?.filter((item: ResultsProps) => item.user.username === username)
-  .map((item: ResultsProps) => item.posts)
-  .flat();
+  const filterData: ResultsProps[] | undefined = mainData.results?.filter(
+    (item: ResultsProps) => {
+      return item.user.username === username;
+    }
+  );
 
+  // const filterData: SinglePostProps[] | undefined = mainData.results
+  // ?.filter((item: ResultsProps) => item.user.username === username)
+  // .map((item: ResultsProps) => item.posts)
+  // .flat();
 
   function handleSelect(value: string): void {
     setIsSelected(value);
     if (value === isSelected) {
       setIsSelected("");
     }
+
     if (value === "Post") {
       setPostSelected(!postSelected);
     } else {
@@ -104,15 +110,16 @@ export default function Profile(props: ProfileProps) {
                 </div>
               </div>
               <div className="mt-12">
-                {postSelected && (
-                  <Post
-                    handleLikes={handleLikes}
-                    id={item.id}
-                    photo={item.photzo}
-                    likes={item.likes}
-                    bookmark={item.bookmarks}
-                  />
-                )}
+                {postSelected &&
+                  item.posts.map((post) => (
+                    <Post
+                      handleLikes={handleLikes}
+                      id={post.id}
+                      photo={post.photo}
+                      likes={post.likes}
+                      bookmark={post.bookmarks}
+                    />
+                  ))}
               </div>
             </>
           );
