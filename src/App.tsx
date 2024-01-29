@@ -156,29 +156,55 @@ export default function App() {
   }, [searchInput, mainData.results]);
 
   const [descriptionInput, setDescriptionInput] = useState<string>("");
+  const [locationInput, setLocationInput] = useState<string>("");
+  const [hashTagsInput, setHashTagsInput] = useState<string[]>([""]);
   const [idCounter, setIdCounter] = useState<number>(27);
+  const [fileImageUrl, setFileImageUrl] = useState<File | null>(null);
+
+  const today = new Date();
+  const currentYear = today.getFullYear();
+  const currentMonth = today.getMonth() + 1;
+  const currentMonthDate = today.getDate();
+  let fullDate = `${currentYear}-${currentMonth}-${currentMonthDate}`;
+
+  if (currentMonth >= 10) {
+    fullDate = `${currentYear}-${currentMonth}-${currentMonthDate}`;
+  } else {
+    fullDate = `${currentYear}-0${currentMonth}-${currentMonthDate}`;
+  }
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) setFileImageUrl(file);
+  };
 
   function handleUpload(id: number) {
     const newPost: SinglePostProps = {
       id: idCounter,
       bookmarks: 0,
       description: descriptionInput,
-      date: "",
-      hashtags: [""],
+      date: fullDate,
+      hashtags: hashTagsInput,
       likes: 0,
-      location: "",
-      photo: "",
+      location: locationInput,
+      photo: fileImageUrl
+        ? URL.createObjectURL(fileImageUrl)
+        : "/assets/photos/smoothie.jpeg",
     };
-    setIdCounter((prev) => prev + 1)
-    setMainData(
-      (prevData: MainProps): MainProps => ({
+    setIdCounter((prev) => prev + 1);
+
+    setMainData((prevData) => {
+      return {
         ...prevData,
-        results: (prevData.results ?? []).map((result) => ({
-          ...result,
-          posts: result.id === id ? [...result.posts, newPost] : result.posts,
-        })),
-      })
-    );
+        results:
+          prevData.results?.map((item) => {
+            return {
+              ...item,
+              posts: item.id === id ? item.posts.concat(newPost) : item.posts,
+            };
+          }) || [],
+      };
+    });
   }
 
   useEffect(() => {
@@ -209,9 +235,22 @@ export default function App() {
             path="/profile/:username"
             element={<Profile handleLikes={handleLikes} mainData={mainData} />}
           />
+
           <Route
             path="/create-post"
-            element={<CreatePost handleUpload={handleUpload} />}
+            element={
+              <CreatePost
+              fileImageUrl={fileImageUrl}
+                handleFileChange={handleFileChange}
+                hashTagsInput={hashTagsInput}
+                setHashTagsInput={setHashTagsInput}
+                descriptionInput={descriptionInput}
+                setDescriptionInput={setDescriptionInput}
+                setLocationInput={setLocationInput}
+                locationInput={locationInput}
+                handleUpload={handleUpload}
+              />
+            }
           />
           <Route
             path="/explore"

@@ -1,13 +1,32 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { MdPostAdd } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
+import TextInputs from "../components/ui/TextInputs";
 
 interface CreatePostProps {
   handleUpload: (value: number) => void;
+  hashTagsInput: string[];
+  locationInput: string;
+  descriptionInput: string;
+  setHashTagsInput: (value: string[]) => void;
+  setDescriptionInput: (value: string) => void;
+  setLocationInput: (value: string) => void;
+  handleFileChange: (value: React.ChangeEvent<HTMLInputElement>) => void;
+  fileImageUrl: File | null;
 }
 
 export default function CreatePost(props: CreatePostProps) {
-  const { handleUpload } = props;
+  const {
+    handleUpload,
+    descriptionInput,
+    hashTagsInput,
+    locationInput,
+    setDescriptionInput,
+    setHashTagsInput,
+    setLocationInput,
+    handleFileChange,
+    fileImageUrl,
+  } = props;
 
   const navigate = useNavigate();
   return (
@@ -16,39 +35,40 @@ export default function CreatePost(props: CreatePostProps) {
         <MdPostAdd />
         <h1>Create Post</h1>
       </div>
-      <div className="space-y-2">
-        <h1 className="font-semibold">Caption</h1>
-        <textarea
-          name=""
-          id=""
-          className="w-full focus:outline-none rounded-lg py-2 px-4 focus:outline-[#7878a3] bg-[#1f1f22] h-[100px] resize-none"
-        ></textarea>
-      </div>
+      <TextInputs
+        onChangeValue={setDescriptionInput}
+        value={descriptionInput}
+        title="Caption"
+      />
       <div className="space-y-2">
         <h1 className="font-semibold">Add Photos</h1>
-        <textarea
-          name=""
-          id=""
-          className="w-full focus:outline-none rounded-lg py-2 px-4 focus:outline-[#7878a3] bg-[#1f1f22] h-[100px] resize-none"
-        ></textarea>
-      </div>
-
-      <div className="space-y-2">
-        <h1 className="font-semibold">Add Location</h1>
         <input
-          type="text"
-          className="w-full focus:outline-none rounded-lg py-3 px-4 focus:outline-[#7878a3] bg-[#1f1f22] resize-none"
+          type="file"
+          onChange={handleFileChange}
+          className="w-full focus:outline-none  rounded-lg py-2 px-4 focus:outline-[#7878a3] bg-[#1f1f22] h-[400px] resize-none"
         />
+        {fileImageUrl && <img src={URL.createObjectURL(fileImageUrl)} alt="" />}
       </div>
-
-      <div className="space-y-2">
-        <h1 className="font-semibold">Add Tags (seperated by comma ",")</h1>
-        <input
-          type="text"
-          placeholder="Js, React, NextJS"
-          className="w-full placeholder:opacity-30  focus:outline-none rounded-lg py-3 px-4 focus:outline-[#7878a3] bg-[#1f1f22] resize-none"
-        />
-      </div>
+      <TextInputs
+        onChangeValue={handleFileChange}
+        value={descriptionInput}
+        title="Add Photos"
+        isInput={true}
+      />
+      <TextInputs
+        onChangeValue={setLocationInput}
+        value={locationInput}
+        title="Add Location"
+        isInput={true}
+        placeholder="Add Location"
+      />
+      {/* <TextInputs
+        onChangeValue={setHashTagsInput}
+        value={locationInput}
+        title="Add Hashtags"
+        isInput={true}
+        placeholder={`Add Tags (seperated by comma ",")`}
+      /> */}
 
       <div className="flex gap-x-4 justify-end items-center">
         <div>
@@ -59,8 +79,15 @@ export default function CreatePost(props: CreatePostProps) {
             Cancel
           </button>
         </div>
+
         <div>
-          <button onClick={() => handleUpload(1)} className="bg-[#877Eff] px-6 hover:brightness-150 duration-300 py-3 rounded-md">
+          <button
+            onClick={() => {
+              handleUpload(1);
+              navigate("/");
+            }}
+            className="bg-[#877Eff] px-6 hover:brightness-150 duration-300 py-3 rounded-md"
+          >
             Create Post
           </button>
         </div>
