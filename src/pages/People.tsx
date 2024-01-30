@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { MainProps, UserProps } from "../lib/typings";
 import Creators from "../components/ui/Creators";
+import MoreButton from "../components/ui/MoreButton";
 
 interface PeopleProps {
   mainData: MainProps;
@@ -9,6 +10,7 @@ interface PeopleProps {
 }
 export default function People(props: PeopleProps) {
   const { mainData, userData, isLoading } = props;
+  const [lastIndex, setLastIndex] = useState<number>(6)
   return (
     <div className="text-white flex-1 flex flex-col space-y-8 py-12 px-5 md:p-16">
       <h1 className="text-3xl font-bold">All Users</h1>
@@ -29,12 +31,15 @@ export default function People(props: PeopleProps) {
               </div>
             );
           })}
-        {userData?.map((data: UserProps) => {
+        {(userData ?? []).slice(0, lastIndex).map((data: UserProps) => {
           return (
             <Creators isPeopleTrue={true} isLoading={isLoading} {...data} />
           );
         })}
       </div>
+      <div className="flex pb-10 justify-center items-center mr-14">
+          <MoreButton isLoading={isLoading} lastIndex={lastIndex} num={26} setLastIndex={setLastIndex} />
+        </div>
     </div>
   );
 }

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { MainProps, ResultsProps, SinglePostProps } from "../lib/typings";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import Post from "../components/ui/Post";
+import MoreButton from "../components/ui/MoreButton";
 
 interface ExploreProps {
   mainData: MainProps;
@@ -65,16 +66,7 @@ export default function Explore(props: ExploreProps) {
                 })}
         </div>
         <div className="flex justify-center items-center mr-14">
-          {lastIndex <= 25 && !isLoading && (
-            <button
-              className=" px-8 py-2 rounded-md bg-[#877eff] hover:scale-105 active:scale-90 duration-300"
-              onClick={() => {
-                setLastIndex((prevIndex) => prevIndex + 6);
-              }}
-            >
-              More Post
-            </button>
-          )}
+          <MoreButton isLoading={isLoading} lastIndex={lastIndex} num={26} setLastIndex={setLastIndex} />
         </div>
       </div>
     </div>

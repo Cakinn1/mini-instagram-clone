@@ -196,15 +196,15 @@ export default function App() {
     setMainData((prevData) => {
       return {
         ...prevData,
-        results:
-          prevData.results?.map((item) => {
-            return {
-              ...item,
-              posts: item.id === id ? item.posts.concat(newPost) : item.posts,
-            };
-          }) || [],
+        results: (prevData.results ?? []).map((item) => {
+          return {
+            ...item,
+            posts: item.id === id ? item.posts.concat(newPost) : item.posts,
+          };
+        }),
       };
     });
+    setFileImageUrl(null);
   }
 
   useEffect(() => {
@@ -240,7 +240,7 @@ export default function App() {
             path="/create-post"
             element={
               <CreatePost
-              fileImageUrl={fileImageUrl}
+                fileImageUrl={fileImageUrl}
                 handleFileChange={handleFileChange}
                 hashTagsInput={hashTagsInput}
                 setHashTagsInput={setHashTagsInput}
