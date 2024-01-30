@@ -207,6 +207,9 @@ export default function App() {
       };
     });
     setFileImageUrl(null);
+    setDescriptionInput('')
+    setHashTagsInput([''])
+    setLocationInput('')
   }
 
   

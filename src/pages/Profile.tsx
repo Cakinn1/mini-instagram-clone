@@ -104,7 +104,7 @@ export default function Profile(props: ProfileProps) {
                   <h1>Liked Posts</h1>
                 </div>
               </div>
-              <div className="mt-12">
+              <div className="mt-12 flex flex-wrap gap-x-4">
                 {postSelected &&
                   item.posts.map((post) => (
                     <Post
