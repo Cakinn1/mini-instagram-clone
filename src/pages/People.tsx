@@ -16,7 +16,7 @@ export default function People(props: PeopleProps) {
       <h1 className="text-3xl font-bold">All Users</h1>
       <div className="flex flex-wrap gap-x-4">
         {isLoading &&
-          new Array(12).fill(0).map((_, index: number) => {
+          new Array(6).fill(0).map((_, index: number) => {
             return (
               <div
                 key={index}
@@ -38,7 +38,7 @@ export default function People(props: PeopleProps) {
         })}
       </div>
       <div className="flex pb-10 justify-center items-center mr-14">
-          <MoreButton isLoading={isLoading} lastIndex={lastIndex} num={26} setLastIndex={setLastIndex} />
+          <MoreButton btnText="More Users" isLoading={isLoading} lastIndex={lastIndex} num={26} setLastIndex={setLastIndex} />
         </div>
     </div>
   );

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { Dispatch, useEffect, useState } from "react";
 import { MdPostAdd } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import TextInputs from "../components/ui/TextInputs";
@@ -8,11 +8,12 @@ interface CreatePostProps {
   hashTagsInput: string[];
   locationInput: string;
   descriptionInput: string;
-  setHashTagsInput: (value: string[]) => void;
+  setHashTagsInput: Dispatch<React.SetStateAction<string[]>>;
   setDescriptionInput: (value: string) => void;
   setLocationInput: (value: string) => void;
   handleFileChange: (value: React.ChangeEvent<HTMLInputElement>) => void;
   fileImageUrl: File | null;
+  setFileImageUrl: (value: File | null) => void;
 }
 
 export default function CreatePost(props: CreatePostProps) {
@@ -26,6 +27,7 @@ export default function CreatePost(props: CreatePostProps) {
     setLocationInput,
     handleFileChange,
     fileImageUrl,
+    setFileImageUrl,
   } = props;
 
   const navigate = useNavigate();
@@ -39,38 +41,59 @@ export default function CreatePost(props: CreatePostProps) {
         onChangeValue={setDescriptionInput}
         value={descriptionInput}
         title="Caption"
+        isInput={false}
       />
       <div className="space-y-2">
-        <h1 className="font-semibold">Add Photos</h1>
-        <input
-          type="file"
-          onChange={handleFileChange}
-          className="w-full focus:outline-none  rounded-lg py-2 px-4 focus:outline-[#7878a3] bg-[#1f1f22] h-[400px] resize-none"
-        />
-        {fileImageUrl && <img src={URL.createObjectURL(fileImageUrl)} alt="" />}
+        {fileImageUrl ? (
+          <>
+            <h1 onClick={() => setFileImageUrl(null)} className="font-semibold">
+              Click to un add photo
+            </h1>
+            <img
+              className="cursor-pointer rounded-md h-[400px] w-full object-cover"
+              onClick={() => setFileImageUrl(null)}
+              src={URL.createObjectURL(fileImageUrl)}
+              alt=""
+            />
+          </>
+        ) : (
+          <>
+            <h1 className="font-semibold">Add Photos</h1>
+            <input
+              type="file"
+              onChange={handleFileChange}
+              className="w-full  focus:outline-none  cursor-pointer rounded-lg py-2 px-4 focus:outline-[#7878a3] bg-[#1f1f22] h-[400px] resize-none"
+            />
+          </>
+        )}
       </div>
-      <TextInputs
-        onChangeValue={handleFileChange}
-        value={descriptionInput}
-        title="Add Photos"
-        isInput={true}
-      />
-      <TextInputs
+
+      {/* <TextInputs
         onChangeValue={setLocationInput}
         value={locationInput}
         title="Add Location"
         isInput={true}
         placeholder="Add Location"
-      />
-      {/* <TextInputs
-        onChangeValue={setHashTagsInput}
-        value={locationInput}
-        title="Add Hashtags"
-        isInput={true}
-        placeholder={`Add Tags (seperated by comma ",")`}
       /> */}
 
-      <div className="flex gap-x-4 justify-end items-center">
+      <div className="space-y-2">
+        <h1 className="font-semibold">Add Hashtags</h1>
+        <input
+          className="w-full placeholder:opacity-30  focus:outline-none rounded-lg py-3 px-4 focus:outline-[#7878a3] bg-[#1f1f22] resize-none"
+          type="text"
+          placeholder="Enter tags separated by commas (e.g. React, Nextjs, niceWork)"
+          onChange={(e) => {
+            const inputTags = e.target.value
+              .split(",")
+              .map((tag) => tag.trim());
+            const tagsWithHashtags = inputTags.map((tag) => {
+              return `#${tag}`;
+            });
+            setHashTagsInput(tagsWithHashtags);
+          }}
+        />
+      </div>
+      <div className="flex gap-x-4 pb-10 justify-end items-center">
         <div>
           <button
             onClick={() => navigate("/")}

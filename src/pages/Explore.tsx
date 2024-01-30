@@ -47,7 +47,7 @@ export default function Explore(props: ExploreProps) {
                 .fill(0)
                 .map((_, index) => (
                   <div
-                    className="h-[300px] w-full lg:w-[48%] xl:w-[30%] mb-4 bg-gray-300 animate-pulse"
+                    className="h-[300px] rounded-lg w-full lg:w-[48%] xl:w-[30%] mb-4 bg-gray-300 animate-pulse"
                     key={index}
                   ></div>
                 ))
@@ -66,7 +66,7 @@ export default function Explore(props: ExploreProps) {
                 })}
         </div>
         <div className="flex justify-center items-center mr-14">
-          <MoreButton isLoading={isLoading} lastIndex={lastIndex} num={26} setLastIndex={setLastIndex} />
+          <MoreButton btnText="More Post" isLoading={isLoading} lastIndex={lastIndex} num={26} setLastIndex={setLastIndex} />
         </div>
       </div>
     </div>

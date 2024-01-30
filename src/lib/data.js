@@ -797,3 +797,4 @@ export function fetchData() {
     }, 2000);
   });
 }
+

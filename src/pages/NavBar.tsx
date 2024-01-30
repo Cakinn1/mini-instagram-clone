@@ -1,6 +1,6 @@
-import React, { ReactElement, useState } from "react";
+import React, { ReactElement, useEffect, useState } from "react";
 import { MainProps } from "../lib/typings";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { NavLinkProps, navLinks } from "../lib/constants";
 import { CiLogout } from "react-icons/ci";
 interface NavBarProps {
@@ -18,6 +18,13 @@ export default function NavBar(props: NavBarProps) {
       setIsSelected(value);
     }
   }
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.pathname === "/") {
+      setIsSelected("Home");
+    }
+  }, [location.pathname]);
 
   return (
     <div className="w-[280px] hidden md:flex  text-white  ">

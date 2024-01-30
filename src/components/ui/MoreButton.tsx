@@ -5,9 +5,10 @@ interface MoreButtonProps {
   num: number;
   isLoading: boolean;
   setLastIndex: Dispatch<React.SetStateAction<number>>;
+  btnText: string
 }
 export default function MoreButton(props: MoreButtonProps) {
-  const { isLoading, lastIndex, num, setLastIndex } = props;
+  const { isLoading, lastIndex, num, setLastIndex, btnText } = props;
   return (
     <>
       {lastIndex <= num && !isLoading && (
@@ -17,7 +18,7 @@ export default function MoreButton(props: MoreButtonProps) {
             setLastIndex((prevIndex) => prevIndex + 6);
           }}
         >
-          More Post
+          {btnText}
         </button>
       )}
     </>

@@ -165,6 +165,8 @@ export default function App() {
   const currentYear = today.getFullYear();
   const currentMonth = today.getMonth() + 1;
   const currentMonthDate = today.getDate();
+
+
   let fullDate = `${currentYear}-${currentMonth}-${currentMonthDate}`;
 
   if (currentMonth >= 10) {
@@ -207,6 +209,8 @@ export default function App() {
     setFileImageUrl(null);
   }
 
+  
+
   useEffect(() => {
     console.log(mainData);
   }, [mainData]);
@@ -240,6 +244,7 @@ export default function App() {
             path="/create-post"
             element={
               <CreatePost
+              setFileImageUrl={setFileImageUrl}
                 fileImageUrl={fileImageUrl}
                 handleFileChange={handleFileChange}
                 hashTagsInput={hashTagsInput}

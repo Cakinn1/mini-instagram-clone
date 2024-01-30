@@ -20,15 +20,15 @@ export default function TextInputs({
           type={`${title === "Add Photos" ? "file" : 'text' }`}
           placeholder={placeholder}
           onChange={(e) => onChangeValue(e.target.value)}
-          className="w-full placeholder:opacity-30  focus:outline-none rounded-lg py-3 px-4 focus:outline-[#7878a3] bg-[#1f1f22] resize-none"
+          className="w-full placeholder:opacity-30   focus:outline-none rounded-lg py-3 px-4 focus:outline-[#7878a3] bg-[#1f1f22] resize-none"
         />
       ) : (
         <textarea
           onChange={(e) => onChangeValue(e.target.value)}
           value={value}
-          id=""
-          name=""
-          className="w-full focus:outline-none rounded-lg py-2 px-4 focus:outline-[#7878a3] bg-[#1f1f22] h-[100px] resize-none"
+          placeholder="Add Caption"
+          className="w-full placeholder:opacity-30  h-[140px]  focus:outline-none rounded-lg py-3 px-4 focus:outline-[#7878a3] bg-[#1f1f22] resize-none"
+
         ></textarea>
       )}
     </div>
